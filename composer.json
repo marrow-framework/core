@@ -13,6 +13,11 @@
     ],
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/marrow-framework/core",
+    "support": {
+        "issues": "https://github.com/marrow-framework/core/issues",
+        "source": "https://github.com/marrow-framework/core"
+    },
     "authors": [
         {
             "name": "Aure Dulvresse",

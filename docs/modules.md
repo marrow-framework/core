@@ -79,7 +79,7 @@ actual boot order from `imports`.
 
 ## Lifecycle
 
-`ModuleManager::boot()` (`framework/src/Module/ModuleManager.php`) runs once,
+`ModuleManager::boot()` (`core/src/Module/ModuleManager.php`) runs once,
 from `Application::boot()`:
 
 1. **Validate** — every `imports` entry must be a registered module, or a
@@ -102,7 +102,7 @@ from `Application::boot()`:
    are attached to the `Dispatcher`, then the module's own `boot()` method
    runs.
 
-`BaseModule` (`framework/src/Module/BaseModule.php`) gives every module class
+`BaseModule` (`core/src/Module/BaseModule.php`) gives every module class
 protected accessors — `getRouter()`, `getEvents()`, `getView()` — and the
 two lifecycle methods to override:
 

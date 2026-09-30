@@ -316,9 +316,9 @@ Official companion packages built on this mechanism, each an independent, self-d
 
 | Package | Purpose |
 |---|---|
-| [`marrow/form-builder`](https://github.com/marrow/form-builder) | Django-style declarative forms — define fields on the backend, render and validate them without duplicating rules on the frontend |
-| [`marrow/anvil`](https://github.com/marrow/anvil) | Local Docker Compose development environment (Sail's role, under its own name) |
-| [`marrow/compass`](https://github.com/marrow/compass) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
+| [`marrow/form-builder`](https://github.com/marrow-framework/form-builder) | Django-style declarative forms — define fields on the backend, render and validate them without duplicating rules on the frontend |
+| [`marrow/anvil`](https://github.com/marrow-framework/anvil) | Local Docker Compose development environment (Sail's role, under its own name) |
+| [`marrow/compass`](https://github.com/marrow-framework/compass) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
 
 ```bash
 composer require marrow/form-builder
@@ -378,7 +378,7 @@ Contributions are welcome in line with the project conventions:
 ### Recommended workflow
 
 ```bash
-git clone https://github.com/marrow/framework.git
+git clone https://github.com/marrow-framework/core.git
 cd framework
 composer install
 composer test

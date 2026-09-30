@@ -1,6 +1,6 @@
 # Routing
 
-`Marrow\Routing\Router` (`framework/src/Routing/Router.php`) is a fluent
+`Marrow\Routing\Router` (`core/src/Routing/Router.php`) is a fluent
 router with groups, resource routes, named routes, middleware aliases, and
 automatic controller-method dependency injection.
 

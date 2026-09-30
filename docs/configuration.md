@@ -56,7 +56,7 @@ config('app.name');                 // dot notation
 config('database.driver', 'sqlite'); // with a default
 ```
 
-`Config\Repository` (`framework/src/Config/Repository.php`) stores the
+`Config\Repository` (`core/src/Config/Repository.php`) stores the
 top-level key per file and supports the same dot notation for reading
 nested keys (`config('auth.guards.session.table')`). It has no setter used
 by application code beyond tests — treat config as read-only after boot.

@@ -2,7 +2,7 @@
 
 ## The Application kernel
 
-`Marrow\Application` (`framework/src/Application.php`) is the single IoC
+`Marrow\Application` (`core/src/Application.php`) is the single IoC
 kernel for both HTTP and console contexts. Constructing it:
 
 1. Stores itself as a process-wide singleton (`Application::getInstance()`).
