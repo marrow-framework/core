@@ -181,8 +181,8 @@ serving `public/` directly with no router otherwise.
 A module distributed as a Composer package can register its own `forge`
 commands the same way a local module does, via `#[Module(commands: [...])]`
 (see [Modules](modules.md#distributing-a-module-as-a-package)).
-`marrow/compass` does exactly this: installing it adds
+`marrow/ai-context` does exactly this: installing it adds
 `ai:context`, which generates an `AGENTS.md` file listing every registered
 route, module, and config file — a live map for an AI coding agent (or a new
 contributor) to read before exploring the codebase, immediately available
-after `composer require --dev marrow/compass`, no wiring step.
+after `composer require --dev marrow/ai-context`, no wiring step.

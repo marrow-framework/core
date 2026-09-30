@@ -1,13 +1,20 @@
-# Marrow Framework
+<div align="center">
 
-![Marrow](https://github.com/AureDulvresse/marrow/blob/main/logo.png)
+<img src="https://raw.githubusercontent.com/marrow-framework/.github/main/marrow-logo-mark.svg" alt="Marrow" width="120">
+
+# Marrow Framework
 
 The technical core of Marrow: dependency container, HMVC modules, HTTP routing, CLI, ORM, security, and application services.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/marrow-framework/core/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/marrow-framework/core/actions/workflows/ci.yml)
+[![Packagist Version](https://img.shields.io/packagist/v/marrow/framework?style=flat-square&label=packagist)](https://packagist.org/packages/marrow/framework)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/marrow/framework?style=flat-square&color=blue)](https://packagist.org/packages/marrow/framework)
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net)
 [![License MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.3.0-f97316?style=flat-square)](https://github.com/marrow-framework/core/releases)
+
+</div>
+
+---
 
 This repository contains the framework core. It is not a ready-to-use application project: for starting an application, it is recommended to use the associated skeleton repository.
 
@@ -318,11 +325,11 @@ Official companion packages built on this mechanism, each an independent, self-d
 |---|---|
 | [`marrow/form-builder`](https://github.com/marrow-framework/form-builder) | Django-style declarative forms — define fields on the backend, render and validate them without duplicating rules on the frontend |
 | [`marrow/anvil`](https://github.com/marrow-framework/anvil) | Local Docker Compose development environment (Sail's role, under its own name) |
-| [`marrow/compass`](https://github.com/marrow-framework/compass) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
+| [`marrow/ai-context`](https://github.com/marrow-framework/ai-context) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
 
 ```bash
 composer require marrow/form-builder
-composer require --dev marrow/anvil marrow/compass
+composer require --dev marrow/anvil marrow/ai-context
 ```
 
 See [Modules (HMVC)](docs/modules.md#distributing-a-module-as-a-package) for how the discovery mechanism itself works, if you want to ship your own.
@@ -389,3 +396,11 @@ Then open a PR with a concise description of the feature or bug fix.
 ---
 
 Marrow aims to provide a solid foundation for modular, testable, and maintainable PHP applications without relying on excessive abstractions or opaque conventions.
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Aure Dulvresse](https://github.com/AureDulvresse)
+
+</div>
