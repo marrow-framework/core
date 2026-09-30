@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new timestamped migration file.
@@ -40,9 +40,9 @@ class MakeMigrationCommand extends Command
 
 declare(strict_types=1);
 
-use Ironflow\\Database\\Migrations\\Migration;
-use Ironflow\\Database\\Schema\\Schema;
-use Ironflow\\Database\\Schema\\Table;
+use Marrow\\Database\\Migrations\\Migration;
+use Marrow\\Database\\Schema\\Schema;
+use Marrow\\Database\\Schema\\Table;
 
 class {$class} extends Migration
 {

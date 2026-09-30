@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Relations;
+namespace Marrow\Database\Relations;
 
-use Ironflow\Database\Connection;
-use Ironflow\Database\Model;
-use Ironflow\Database\ModelQueryBuilder;
-use Ironflow\Support\Collection;
+use Marrow\Database\Connection;
+use Marrow\Database\Model;
+use Marrow\Database\ModelQueryBuilder;
+use Marrow\Support\Collection;
 
 /**
  * Base class for all ORM relations.

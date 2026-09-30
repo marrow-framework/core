@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Template;
+namespace Marrow\Template;
 
 /**
  * Passed to view composers so they can inject data via $view->with('key', $value).

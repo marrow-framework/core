@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Traits;
+namespace Marrow\Tests\Traits;
 
-use Ironflow\Database\Connection;
-use Ironflow\Database\Model;
+use Marrow\Database\Connection;
+use Marrow\Database\Model;
 
 /**
  * Provides a fresh SQLite in-memory database for each test.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Auth\AuthManager;
-use Ironflow\Http\Request;
-use Ironflow\Http\RedirectResponse;
+use Marrow\Auth\AuthManager;
+use Marrow\Http\Request;
+use Marrow\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

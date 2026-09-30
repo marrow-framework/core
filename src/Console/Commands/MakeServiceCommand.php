@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new #[Injectable] service class and, when generated inside a
@@ -38,7 +38,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Attributes\\Injectable;
+use Marrow\\Attributes\\Injectable;
 
 #[Injectable]
 class {$name}

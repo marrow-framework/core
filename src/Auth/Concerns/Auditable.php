@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth\Concerns;
+namespace Marrow\Auth\Concerns;
 
-use Ironflow\Application;
-use Ironflow\Database\Connection;
+use Marrow\Application;
+use Marrow\Database\Connection;
 
 /**
  * Auditable — automatically log model create/update/delete events.
@@ -127,7 +127,7 @@ trait Auditable
     private function resolveAuditUserId(): int|string|null
     {
         try {
-            $auth = Application::getInstance()->getContainer()->make(\Ironflow\Auth\AuthManager::class);
+            $auth = Application::getInstance()->getContainer()->make(\Marrow\Auth\AuthManager::class);
             return $auth->id();
         } catch (\Throwable) {
             return null;

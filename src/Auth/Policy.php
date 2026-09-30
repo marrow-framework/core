@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
 /**
  * Base class for authorization policy objects.

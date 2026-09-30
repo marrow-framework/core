@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console;
+namespace Marrow\Console;
 
-use Ironflow\Container;
-use Ironflow\Module\ModuleManager;
+use Marrow\Container;
+use Marrow\Module\ModuleManager;
 use Symfony\Component\Console\Application as ConsoleApp;
 
 /**
@@ -18,7 +18,7 @@ class Kernel
 
     public function __construct(
         private readonly Container $container,
-        string $name = 'IronFlow',
+        string $name = 'Marrow',
         string $version = '0.1.0'
     ) {
         $this->console = new ConsoleApp($name, $version);

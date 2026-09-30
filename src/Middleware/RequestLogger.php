@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Database\Connection;
-use Ironflow\Http\Request;
+use Marrow\Database\Connection;
+use Marrow\Http\Request;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Logs every HTTP request (method, URI, status, duration) via PSR-3.
- * In debug mode (`APP_DEBUG=true`) also appends an `X-IronFlow-Profile` header:
+ * In debug mode (`APP_DEBUG=true`) also appends an `X-Marrow-Profile` header:
  *
- *   X-IronFlow-Profile: method=GET uri=/ status=200 time=12ms queries=3
+ *   X-Marrow-Profile: method=GET uri=/ status=200 time=12ms queries=3
  *
  * SQL query tracking requires the database Connection to have logging enabled
  * (Connection::enableQueryLog() called during bootstrap).
@@ -72,7 +72,7 @@ class RequestLogger
             if ($queries !== null) {
                 $profile .= " queries={$queries}";
             }
-            $response->headers->set('X-IronFlow-Profile', $profile);
+            $response->headers->set('X-Marrow-Profile', $profile);
         }
 
         return $response;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Validation\Attributes;
+namespace Marrow\Validation\Attributes;
 
 use Attribute;
 

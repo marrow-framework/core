@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
-use Ironflow\Database\Connection;
-use Ironflow\Session\SessionManager;
-use Ironflow\Auth\Gate;
+use Marrow\Database\Connection;
+use Marrow\Session\SessionManager;
+use Marrow\Auth\Gate;
 
 /**
  * Manages multiple auth guards (session + jwt).
@@ -85,7 +85,7 @@ class AuthManager
      */
     public function gate(): Gate
     {
-        return \Ironflow\Application::getInstance()->getContainer()->make(Gate::class);
+        return \Marrow\Application::getInstance()->getContainer()->make(Gate::class);
     }
 
     private function createGuard(string $name): GuardInterface
@@ -103,9 +103,9 @@ class AuthManager
     {
         $request = null;
         try {
-            $request = \Ironflow\Application::getInstance()
+            $request = \Marrow\Application::getInstance()
                 ->getContainer()
-                ->make(\Ironflow\Http\Request::class);
+                ->make(\Marrow\Http\Request::class);
         } catch (\Throwable) {
             // Request may not be bound in console context.
         }

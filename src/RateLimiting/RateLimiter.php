@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\RateLimiting;
+namespace Marrow\RateLimiting;
 
-use Ironflow\Cache\CacheManager;
+use Marrow\Cache\CacheManager;
 
 /**
  * Sliding-window rate limiter backed by the cache pool.

@@ -1,6 +1,6 @@
 # Events
 
-`Ironflow\Events\Dispatcher` is a simple, decoupled pub/sub — no queued
+`Marrow\Events\Dispatcher` is a simple, decoupled pub/sub — no queued
 "event bus", just synchronous listener calls.
 
 ## Defining an event
@@ -19,7 +19,7 @@ final class PostPublished
 ## Listening
 
 ```php
-$dispatcher = app(\Ironflow\Events\Dispatcher::class);
+$dispatcher = app(\Marrow\Events\Dispatcher::class);
 
 $dispatcher->listen(PostPublished::class, NotifySubscribers::class);   // FQCN, resolved via container
 $dispatcher->listen(PostPublished::class, function (PostPublished $e) {
@@ -33,7 +33,7 @@ A string listener is resolved through the `Container` and must expose a
 ```php
 class NotifySubscribers
 {
-    public function __construct(private readonly \Ironflow\Mail\Mailer $mailer) {}
+    public function __construct(private readonly \Marrow\Mail\Mailer $mailer) {}
 
     public function handle(PostPublished $event): void
     {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Module\Attributes\Module;
-use Ironflow\Module\BaseModule;
+use Marrow\Module\Attributes\Module;
+use Marrow\Module\BaseModule;
 
 #[Module(name: 'beta', imports: [AlphaModule::class], providers: [], exports: [])]
 class BetaModule extends BaseModule {}

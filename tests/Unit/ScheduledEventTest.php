@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Scheduling\ScheduledEvent;
+use Marrow\Scheduling\ScheduledEvent;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 

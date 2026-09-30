@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 
 /**
- * Thin wrapper around Faker\Generator that adds IronFlow-specific helpers
+ * Thin wrapper around Faker\Generator that adds Marrow-specific helpers
  * (password hashing) and normalises a few signatures that differ from Faker's
  * defaults (words → string, dateTimeBetween → formatted string).
  *
@@ -24,11 +24,11 @@ class FakeGenerator
         $this->faker = FakerFactory::create($locale);
     }
 
-    // ── IronFlow-specific helpers ─────────────────────────────────────
+    // ── Marrow-specific helpers ─────────────────────────────────────
 
     public function password(string $plain = 'password'): string
     {
-        return \Ironflow\Auth\Hash::make($plain);
+        return \Marrow\Auth\Hash::make($plain);
     }
 
     // ── Normalised signatures (different from Faker defaults) ─────────

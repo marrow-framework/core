@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Notifications;
+namespace Marrow\Notifications;
 
 /**
  * Base class for notifications that can be delivered across multiple channels.

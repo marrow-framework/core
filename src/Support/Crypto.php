@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Support;
+namespace Marrow\Support;
 
 /**
  * Symmetric encryption helper backed by AES-256-GCM (authenticated).

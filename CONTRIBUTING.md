@@ -1,4 +1,4 @@
-# Contribuer à IronFlow
+# Contribuer à Marrow
 
 Merci de l'intérêt que vous portez au projet ! Ce guide couvre tout ce dont vous avez besoin pour soumettre une contribution de qualité.
 
@@ -95,9 +95,9 @@ main  ←  votre branche feature/fix  ←  commits atomiques
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
-use Ironflow\Support\Collection;
+use Marrow\Support\Collection;
 
 final class QueryBuilder
 {
@@ -158,7 +158,7 @@ tests/
 └── Pest.php            ← bootstrap, uses(TestCase::class)->in('Unit')
 ```
 
-Les fixtures (stubs, faux modèles, faux modules) vont dans `tests/Unit/Fixtures/` avec le namespace `Ironflow\Tests\Unit\Fixtures` — **pas inline** dans les fichiers de test.
+Les fixtures (stubs, faux modèles, faux modules) vont dans `tests/Unit/Fixtures/` avec le namespace `Marrow\Tests\Unit\Fixtures` — **pas inline** dans les fichiers de test.
 
 ---
 
@@ -273,11 +273,11 @@ Aucun / [description si applicable]
 
 ## Signaler un bug
 
-Avant d'ouvrir une issue, vérifiez que le bug n'est pas déjà [signalé](https://github.com/ironflow-framework/framework/issues).
+Avant d'ouvrir une issue, vérifiez que le bug n'est pas déjà [signalé](https://github.com/marrow/framework/issues).
 
 Utilisez le template **Bug Report** et incluez :
 
-1. **Version d'IronFlow** (`composer show ironflow-framework/framework`)
+1. **Version d'Marrow** (`composer show marrow/framework`)
 2. **Version de PHP** (`php -v`)
 3. **Étapes minimales pour reproduire**
 4. **Comportement attendu vs observé**
@@ -303,4 +303,4 @@ Consultez [SECURITY.md](SECURITY.md) pour le processus de divulgation responsabl
 
 ---
 
-Merci de contribuer à IronFlow. Chaque issue, PR ou retour d'expérience compte.
+Merci de contribuer à Marrow. Chaque issue, PR ou retour d'expérience compte.

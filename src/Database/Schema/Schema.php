@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Schema;
+namespace Marrow\Database\Schema;
 
-use Ironflow\Application;
-use Ironflow\Database\Connection;
+use Marrow\Application;
+use Marrow\Database\Connection;
 
 /**
  * Static entry point for schema operations — create, alter, drop tables.

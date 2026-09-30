@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Database\Concerns\SoftDeletes;
-use Ironflow\Database\Model;
-use Ironflow\Database\Relations\BelongsTo;
-use Ironflow\Database\Relations\BelongsToMany;
+use Marrow\Database\Concerns\SoftDeletes;
+use Marrow\Database\Model;
+use Marrow\Database\Relations\BelongsTo;
+use Marrow\Database\Relations\BelongsToMany;
 
 class RelationPostModel extends Model
 {

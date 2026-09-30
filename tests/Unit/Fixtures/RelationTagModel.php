@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Database\Concerns\SoftDeletes;
-use Ironflow\Database\Model;
+use Marrow\Database\Concerns\SoftDeletes;
+use Marrow\Database\Model;
 
 class RelationTagModel extends Model
 {

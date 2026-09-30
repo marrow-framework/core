@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Application;
-use Ironflow\Http\Request;
+use Marrow\Application;
+use Marrow\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  * isn't running the Vite dev server at all (a pure API backend, or the
  * frontend pipeline isn't installed).
  *
- * Polls GET /__ironflow/ping every 800ms for an mtime hash over watched
+ * Polls GET /__marrow/ping every 800ms for an mtime hash over watched
  * source files, injected into every HTML response; the browser reloads
  * when the hash changes. Steps aside entirely (no ping, no injected
  * script) once Vite's dev server is running (public/hot present) — Vite's
@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class HotReloadMiddleware
 {
-    private const PING_PATH = '/__ironflow/ping';
+    private const PING_PATH = '/__marrow/ping';
 
     public function __construct(private readonly Application $app)
     {
@@ -131,7 +131,7 @@ class HotReloadMiddleware
         return <<<'HTML'
 <script>
 (function () {
-  var _hash = null, _url = '/__ironflow/ping';
+  var _hash = null, _url = '/__marrow/ping';
   function check() {
     fetch(_url, { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })

@@ -1,6 +1,6 @@
 # Security Hardening
 
-IronFlow bundles its security-related middleware under a single config
+Marrow bundles its security-related middleware under a single config
 source, `config/shield.php`, read into one typed `Http\Shield\ShieldConfig`
 object (constructor-injected into `SecurityHeaders` and `VerifyCsrfToken`)
 — the same idea as AdonisJS's Shield.
@@ -114,8 +114,8 @@ from `APP_KEY` (SHA-256-derived, so any non-empty `APP_KEY` works
 regardless of its raw length):
 
 ```php
-$encrypted = \Ironflow\Support\Crypto::encrypt($plaintext);
-$plaintext = \Ironflow\Support\Crypto::decrypt($encrypted);   // '' if tampered/malformed/wrong key
+$encrypted = \Marrow\Support\Crypto::encrypt($plaintext);
+$plaintext = \Marrow\Support\Crypto::decrypt($encrypted);   // '' if tampered/malformed/wrong key
 ```
 
 Both throw `RuntimeException` if `APP_KEY` isn't set — there is deliberately

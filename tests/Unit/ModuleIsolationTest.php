@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Container;
-use Ironflow\Exceptions\ContainerException;
-use Ironflow\Module\ModuleManager;
-use Ironflow\Tests\Unit\Fixtures\ConsumerModuleB;
-use Ironflow\Tests\Unit\Fixtures\ModuleAExportedService;
-use Ironflow\Tests\Unit\Fixtures\ModuleAPrivateService;
-use Ironflow\Tests\Unit\Fixtures\ModuleBController;
-use Ironflow\Tests\Unit\Fixtures\ModuleBServiceNeedingExported;
-use Ironflow\Tests\Unit\Fixtures\ModuleBServiceNeedingNamedBinding;
-use Ironflow\Tests\Unit\Fixtures\ModuleBServiceNeedingPrivate;
-use Ironflow\Tests\Unit\Fixtures\ProviderModuleA;
+use Marrow\Container;
+use Marrow\Exceptions\ContainerException;
+use Marrow\Module\ModuleManager;
+use Marrow\Tests\Unit\Fixtures\ConsumerModuleB;
+use Marrow\Tests\Unit\Fixtures\ModuleAExportedService;
+use Marrow\Tests\Unit\Fixtures\ModuleAPrivateService;
+use Marrow\Tests\Unit\Fixtures\ModuleBController;
+use Marrow\Tests\Unit\Fixtures\ModuleBServiceNeedingExported;
+use Marrow\Tests\Unit\Fixtures\ModuleBServiceNeedingNamedBinding;
+use Marrow\Tests\Unit\Fixtures\ModuleBServiceNeedingPrivate;
+use Marrow\Tests\Unit\Fixtures\ProviderModuleA;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //

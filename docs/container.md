@@ -1,6 +1,6 @@
 # Service Container
 
-`Ironflow\Container` (`framework/src/Container.php`) is the IoC container
+`Marrow\Container` (`framework/src/Container.php`) is the IoC container
 backing everything else in the framework: controllers, middleware, console
 commands, and module `providers` are all resolved through it.
 
@@ -48,7 +48,7 @@ with no argument returns the `Application` instance itself.
 ## `#[Inject]` — attribute-based injection
 
 ```php
-use Ironflow\Attributes\Inject;
+use Marrow\Attributes\Inject;
 
 class ReportService
 {

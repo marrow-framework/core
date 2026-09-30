@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Relations;
+namespace Marrow\Database\Relations;
 
-use Ironflow\Database\ModelQueryBuilder;
-use Ironflow\Database\Model;
-use Ironflow\Support\Collection;
+use Marrow\Database\ModelQueryBuilder;
+use Marrow\Database\Model;
+use Marrow\Support\Collection;
 
 /**
  * One-to-one relation: a User hasOne Profile.

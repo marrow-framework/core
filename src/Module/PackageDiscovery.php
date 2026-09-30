@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Module;
+namespace Marrow\Module;
 
 /**
  * Discovers modules declared by installed Composer packages, so a package
@@ -13,7 +13,7 @@ namespace Ironflow\Module;
  * A package opts in by adding to its own composer.json:
  *
  *   "extra": {
- *       "ironflow": {
+ *       "marrow": {
  *           "modules": ["Acme\\BlogModule\\BlogModule"]
  *       }
  *   }
@@ -51,7 +51,7 @@ final class PackageDiscovery
             if (!is_array($package)) {
                 continue;
             }
-            $declared = $package['extra']['ironflow']['modules'] ?? [];
+            $declared = $package['extra']['marrow']['modules'] ?? [];
             foreach ((array) $declared as $fqcn) {
                 if (is_string($fqcn) && $fqcn !== '') {
                     $modules[] = $fqcn;

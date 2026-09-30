@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Ironflow\Support\Collection;
+use Marrow\Support\Collection;
 
 function col(array $items = []): Collection
 {

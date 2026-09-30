@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Ironflow;
+namespace Marrow;
 
-use Ironflow\Auth\AuthManager;
-use Ironflow\Auth\Gate;
-use Ironflow\Cache\CacheManager;
-use Ironflow\Config\Repository as ConfigRepository;
-use Ironflow\Filesystem\Storage;
-use Ironflow\Console\Kernel as ConsoleKernel;
-use Ironflow\Container;
-use Ironflow\Events\Dispatcher;
-use Ironflow\Exceptions\Handler as ExceptionHandler;
-use Ironflow\Http\Kernel as HttpKernel;
-use Ironflow\Http\Request;
-use Ironflow\Http\Shield\ShieldConfig;
-use Ironflow\Logging\Logger;
-use Ironflow\Module\ModuleManager;
-use Ironflow\Routing\Router;
-use Ironflow\Session\SessionManager;
-use Ironflow\Template\ComponentRegistry;
-use Ironflow\Template\Engine as TemplateEngine;
-use Ironflow\Database\Connection;
-use Ironflow\Validation\ValidatorFactory;
+use Marrow\Auth\AuthManager;
+use Marrow\Auth\Gate;
+use Marrow\Cache\CacheManager;
+use Marrow\Config\Repository as ConfigRepository;
+use Marrow\Filesystem\Storage;
+use Marrow\Console\Kernel as ConsoleKernel;
+use Marrow\Container;
+use Marrow\Events\Dispatcher;
+use Marrow\Exceptions\Handler as ExceptionHandler;
+use Marrow\Http\Kernel as HttpKernel;
+use Marrow\Http\Request;
+use Marrow\Http\Shield\ShieldConfig;
+use Marrow\Logging\Logger;
+use Marrow\Module\ModuleManager;
+use Marrow\Routing\Router;
+use Marrow\Session\SessionManager;
+use Marrow\Template\ComponentRegistry;
+use Marrow\Template\Engine as TemplateEngine;
+use Marrow\Database\Connection;
+use Marrow\Validation\ValidatorFactory;
 use Dotenv\Dotenv;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -139,11 +139,11 @@ class Application
         // Modules come from two sources: explicitly listed in
         // config/modules.php ('enabled'), and auto-discovered from any
         // installed Composer package that declares itself via
-        // extra.ironflow.modules in its own composer.json (see
+        // extra.marrow.modules in its own composer.json (see
         // PackageDiscovery). 'disabled' lets an app opt a discovered module
         // out without uninstalling the package.
         $configured = (array) $this->config->get('modules.enabled', []);
-        $discovered = \Ironflow\Module\PackageDiscovery::discover($this->basePath);
+        $discovered = \Marrow\Module\PackageDiscovery::discover($this->basePath);
         $disabled   = (array) $this->config->get('modules.disabled', []);
 
         $moduleClasses = array_values(array_diff(
@@ -184,7 +184,7 @@ class Application
         // Logger (Monolog-backed) — also bound as PSR-3 LoggerInterface
         $this->container->singleton(Logger::class, function () {
             return new Logger(
-                $this->config->get('app.name', 'IronFlow'),
+                $this->config->get('app.name', 'Marrow'),
                 $this->path('logs'),
                 $this->config->get('logging.level', 'debug'),
                 (bool) $this->config->get('app.debug', false)
@@ -244,7 +244,7 @@ class Application
         $this->container->singleton(ConsoleKernel::class, function () {
             return new ConsoleKernel(
                 $this->container,
-                $this->config->get('app.name', 'IronFlow'),
+                $this->config->get('app.name', 'Marrow'),
                 $this->config->get('app.version', '0.1.0')
             );
         });
@@ -297,26 +297,26 @@ class Application
         $this->container->singleton(Storage::class, fn() => Storage::disk());
 
         // Rate Limiter (sliding window, cache-backed)
-        $this->container->singleton(\Ironflow\RateLimiting\RateLimiter::class, fn() =>
-            new \Ironflow\RateLimiting\RateLimiter($this->container->make(CacheManager::class))
+        $this->container->singleton(\Marrow\RateLimiting\RateLimiter::class, fn() =>
+            new \Marrow\RateLimiting\RateLimiter($this->container->make(CacheManager::class))
         );
 
         // HTTP Client (outbound requests)
-        $this->container->bind(\Ironflow\Http\HttpClient::class, fn() =>
-            \Ironflow\Http\HttpClient::create($this->config->get('services.http', []))
+        $this->container->bind(\Marrow\Http\HttpClient::class, fn() =>
+            \Marrow\Http\HttpClient::create($this->config->get('services.http', []))
         );
 
         // Mailer
-        $this->container->singleton(\Ironflow\Mail\Mailer::class, fn() =>
-            \Ironflow\Mail\Mailer::fromDsn(
+        $this->container->singleton(\Marrow\Mail\Mailer::class, fn() =>
+            \Marrow\Mail\Mailer::fromDsn(
                 $this->config->get('mail.dsn', 'null://null'),
                 $this->config->get('mail', [])
             )
         );
 
         // Queue Manager (database-backed)
-        $this->container->singleton(\Ironflow\Queue\QueueManager::class, fn() =>
-            new \Ironflow\Queue\QueueManager(
+        $this->container->singleton(\Marrow\Queue\QueueManager::class, fn() =>
+            new \Marrow\Queue\QueueManager(
                 $this->container->make(Connection::class),
                 $this->config->get('queue.table', 'jobs'),
                 $this->config->get('queue.failed_table', 'failed_jobs')
@@ -324,23 +324,23 @@ class Application
         );
 
         // Queue Worker
-        $this->container->singleton(\Ironflow\Queue\Worker::class, fn() =>
-            new \Ironflow\Queue\Worker(
-                $this->container->make(\Ironflow\Queue\QueueManager::class),
+        $this->container->singleton(\Marrow\Queue\Worker::class, fn() =>
+            new \Marrow\Queue\Worker(
+                $this->container->make(\Marrow\Queue\QueueManager::class),
                 $this->container->make(Logger::class),
                 $this->container
             )
         );
 
         // Task Scheduler — shared instance so modules can register events in boot()
-        $this->container->singleton(\Ironflow\Scheduling\Schedule::class, fn() =>
-            new \Ironflow\Scheduling\Schedule($this, $this->container->make(\Ironflow\Queue\QueueManager::class))
+        $this->container->singleton(\Marrow\Scheduling\Schedule::class, fn() =>
+            new \Marrow\Scheduling\Schedule($this, $this->container->make(\Marrow\Queue\QueueManager::class))
         );
 
         // Notification Manager
-        $this->container->singleton(\Ironflow\Notifications\NotificationManager::class, fn() =>
-            new \Ironflow\Notifications\NotificationManager(
-                $this->container->make(\Ironflow\Mail\Mailer::class),
+        $this->container->singleton(\Marrow\Notifications\NotificationManager::class, fn() =>
+            new \Marrow\Notifications\NotificationManager(
+                $this->container->make(\Marrow\Mail\Mailer::class),
                 $this->container->make(Connection::class),
                 $this->config->get('notifications.table', 'notifications')
             )
@@ -349,24 +349,24 @@ class Application
         // Health Manager — register default checks (DB, cache, disk, queue).
         // Thresholds and which checks are enabled come from config/health.php
         // so ops can tune them without touching framework code.
-        $this->container->singleton(\Ironflow\Health\HealthManager::class, function () {
-            $manager = new \Ironflow\Health\HealthManager();
+        $this->container->singleton(\Marrow\Health\HealthManager::class, function () {
+            $manager = new \Marrow\Health\HealthManager();
             $enabled = (array) $this->config->get('health.enabled', ['database', 'cache', 'disk', 'queue']);
 
             if (in_array('database', $enabled, true)) {
-                $manager->register(new \Ironflow\Health\Checks\DatabaseHealthCheck(
+                $manager->register(new \Marrow\Health\Checks\DatabaseHealthCheck(
                     $this->container->make(Connection::class)
                 ));
             }
 
             if (in_array('cache', $enabled, true)) {
-                $manager->register(new \Ironflow\Health\Checks\CacheHealthCheck(
+                $manager->register(new \Marrow\Health\Checks\CacheHealthCheck(
                     $this->container->make(CacheManager::class)
                 ));
             }
 
             if (in_array('disk', $enabled, true)) {
-                $manager->register(new \Ironflow\Health\Checks\DiskSpaceHealthCheck(
+                $manager->register(new \Marrow\Health\Checks\DiskSpaceHealthCheck(
                     $this->path('storage'),
                     (float) $this->config->get('health.disk.warn_percent', 85.0),
                     (float) $this->config->get('health.disk.fail_percent', 95.0)
@@ -374,7 +374,7 @@ class Application
             }
 
             if (in_array('queue', $enabled, true)) {
-                $manager->register(new \Ironflow\Health\Checks\QueueHealthCheck(
+                $manager->register(new \Marrow\Health\Checks\QueueHealthCheck(
                     $this->container->make(Connection::class),
                     (string) $this->config->get('queue.table', 'jobs'),
                     (string) $this->config->get('queue.failed_table', 'failed_jobs'),

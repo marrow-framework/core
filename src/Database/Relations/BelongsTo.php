@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Relations;
+namespace Marrow\Database\Relations;
 
-use Ironflow\Database\ModelQueryBuilder;
-use Ironflow\Database\Model;
-use Ironflow\Support\Collection;
+use Marrow\Database\ModelQueryBuilder;
+use Marrow\Database\Model;
+use Marrow\Support\Collection;
 
 /**
  * Inverse of HasOne/HasMany: a Comment belongsTo Post.
@@ -19,7 +19,7 @@ class BelongsTo extends Relation
      * @param mixed $foreignKeyValue the actual value of post_id on this instance
      */
     public function __construct(
-        \Ironflow\Database\Connection $connection,
+        \Marrow\Database\Connection $connection,
         Model $related,
         string $foreignKey,
         string $ownerKey,

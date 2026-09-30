@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Ironflow\Database\Connection;
+use Marrow\Database\Connection;
 
 beforeEach(function () {
     $this->connection = new Connection(['driver' => 'sqlite', 'database' => ':memory:']);

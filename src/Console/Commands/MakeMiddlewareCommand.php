@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new HTTP middleware class.
@@ -32,7 +32,7 @@ declare(strict_types=1);
 
 namespace App\\Middleware;
 
-use Ironflow\\Http\\Request;
+use Marrow\\Http\\Request;
 use Symfony\\Component\\HttpFoundation\\Response;
 
 class {$name}

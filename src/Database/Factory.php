@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
-use Ironflow\Support\Collection;
+use Marrow\Support\Collection;
 
 /**
  * Model factory base class with a minimal built-in fake data generator.

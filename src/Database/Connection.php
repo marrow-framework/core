@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection as DbalConnection;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
-use Ironflow\Support\Collection;
-use Ironflow\Support\Paginator;
+use Marrow\Support\Collection;
+use Marrow\Support\Paginator;
 
 /**
  * Extends QueryBuilder to hydrate rows as Model instances,
@@ -137,7 +137,7 @@ class ModelQueryBuilder extends QueryBuilder
         }
 
         $relInstance = $first->$relation();
-        if (!($relInstance instanceof \Ironflow\Database\Relations\Relation)) {
+        if (!($relInstance instanceof \Marrow\Database\Relations\Relation)) {
             return;
         }
 
@@ -174,7 +174,7 @@ class ModelQueryBuilder extends QueryBuilder
                 continue;
             }
             $relInstance = $first->$relation();
-            if (!($relInstance instanceof \Ironflow\Database\Relations\Relation)) {
+            if (!($relInstance instanceof \Marrow\Database\Relations\Relation)) {
                 continue;
             }
 

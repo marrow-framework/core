@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Scheduling;
+namespace Marrow\Scheduling;
 
 /**
  * A single scheduled task with a cron expression and run filters.
@@ -87,7 +87,7 @@ class ScheduledEvent
 
     private function lockPath(): string
     {
-        return sys_get_temp_dir() . '/ironflow-schedule-' . sha1($this->defaultDescription) . '.lock';
+        return sys_get_temp_dir() . '/marrow-schedule-' . sha1($this->defaultDescription) . '.lock';
     }
 
     // ── Frequency helpers ────────────────────────────────────────────

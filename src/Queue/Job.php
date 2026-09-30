@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Queue;
+namespace Marrow\Queue;
 
 /**
  * Base class for queued jobs. Subclass and implement handle().

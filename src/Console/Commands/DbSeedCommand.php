@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
-use Ironflow\Container;
+use Marrow\Console\Command;
+use Marrow\Container;
 
 /**
  * Resolves a Seeder class from the container (Database\Seeders\DatabaseSeeder

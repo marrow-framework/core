@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
-use Ironflow\Routing\Router;
+use Marrow\Console\Command;
+use Marrow\Routing\Router;
 
 /**
  * Prints every registered route: method, URI, name, action, and middleware.

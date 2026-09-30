@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new HMVC module: its directory structure, a module
@@ -70,8 +70,8 @@ declare(strict_types=1);
 
 namespace Modules\\{$name};
 
-use Ironflow\\Module\\Attributes\\Module;
-use Ironflow\\Module\\BaseModule;
+use Marrow\\Module\\Attributes\\Module;
+use Marrow\\Module\\BaseModule;
 
 #[Module(
     name: '{$lower}',
@@ -105,7 +105,7 @@ PHP;
 /**
  * Loaded by BaseModule::loadRoutes() with \$router already in scope.
  *
- * @var \Ironflow\Routing\Router \$router
+ * @var \Marrow\Routing\Router \$router
  */
 
 use Modules\\{$name}\\Controllers\\{$name}Controller;
@@ -137,8 +137,8 @@ declare(strict_types=1);
 
 namespace Modules\\{$name}\\Controllers;
 
-use Ironflow\\Http\\Request;
-use Ironflow\\Http\\Response;
+use Marrow\\Http\\Request;
+use Marrow\\Http\\Response;
 
 class {$name}Controller
 {

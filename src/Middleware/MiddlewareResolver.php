@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
 /**
  * Single source of truth for turning middleware references into concrete,

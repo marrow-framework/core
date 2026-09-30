@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Logging\Logger;
+use Marrow\Logging\Logger;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
 beforeEach(function () {
-    $this->logDir = sys_get_temp_dir() . '/ironflow-logger-test-' . uniqid();
+    $this->logDir = sys_get_temp_dir() . '/marrow-logger-test-' . uniqid();
     mkdir($this->logDir, 0755, true);
 });
 

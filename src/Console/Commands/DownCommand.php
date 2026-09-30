@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Writes storage/maintenance.flag containing a bypass secret; MaintenanceMode

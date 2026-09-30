@@ -3,9 +3,9 @@
 ## Writing a migration
 
 ```php
-use Ironflow\Database\Migrations\Migration;
-use Ironflow\Database\Schema\Schema;
-use Ironflow\Database\Schema\Table;
+use Marrow\Database\Migrations\Migration;
+use Marrow\Database\Schema\Schema;
+use Marrow\Database\Schema\Table;
 
 class CreatePostsTable extends Migration
 {
@@ -153,7 +153,7 @@ SQLite file (or drop the database) and run a plain `migrate` instead.
 ```php
 namespace Database\Seeders;
 
-use Ironflow\Database\Seeder;
+use Marrow\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

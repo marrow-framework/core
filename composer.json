@@ -1,6 +1,6 @@
 {
-    "name": "ironflow-framework/framework",
-    "description": "IronFlow is a PHP 8.2+ framework designed for modular, scalable, and testable applications.",
+    "name": "marrow/framework",
+    "description": "Marrow is a PHP 8.2+ framework designed for modular, scalable, and testable applications.",
     "keywords": [
         "framework",
         "hmvc",
@@ -9,14 +9,14 @@
         "tailwind",
         "module",
         "laravel",
-        "ironflow"
+        "marrow"
     ],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Aure Dulvresse",
-            "email": "ironflow.framework@gmail.com"
+            "email": "marrow.framework@gmail.com"
         }
     ],
     "require": {
@@ -51,7 +51,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ironflow\\": "src/"
+            "Marrow\\": "src/"
         },
         "files": [
             "src/Support/helpers.php"
@@ -59,7 +59,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Ironflow\\Tests\\": "tests/"
+            "Marrow\\Tests\\": "tests/"
         }
     },
     "scripts": {

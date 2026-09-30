@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Cache;
+namespace Marrow\Cache;
 
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
@@ -119,12 +119,12 @@ class CacheManager
     private function makeAdapter(): AdapterInterface
     {
         return match ($this->driver) {
-            'apcu'  => new ApcuAdapter('ironflow'),
+            'apcu'  => new ApcuAdapter('marrow'),
             'array' => new ArrayAdapter(),
             'redis' => new RedisAdapter(
                 RedisAdapter::createConnection($this->config['redis']['dsn'] ?? 'redis://localhost')
             ),
-            default => new FilesystemAdapter('ironflow', 0, $this->path),
+            default => new FilesystemAdapter('marrow', 0, $this->path),
         };
     }
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow;
+namespace Marrow;
 
-use Ironflow\Attributes\Inject;
-use Ironflow\Exceptions\ContainerException;
+use Marrow\Attributes\Inject;
+use Marrow\Exceptions\ContainerException;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionNamedType;
@@ -95,7 +95,7 @@ class Container
     /**
      * @param class-string|string $abstract
      *
-     * @throws \Ironflow\Exceptions\ContainerException If $abstract can't be reflected or
+     * @throws \Marrow\Exceptions\ContainerException If $abstract can't be reflected or
      *         instantiated, a constructor parameter can't be resolved (no type hint,
      *         no default, no #[Inject]), an #[Inject] key matches no binding/config, or
      *         $callerModule resolves a binding its module doesn't export.
@@ -246,7 +246,7 @@ class Container
         if (str_starts_with($key, 'config.')) {
             $configKey = substr($key, 7);
             /** @var Config\Repository $config */
-            $config = $this->make(\Ironflow\Config\Repository::class);
+            $config = $this->make(\Marrow\Config\Repository::class);
             return $config->get($configKey);
         }
 

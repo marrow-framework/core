@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Ironflow\Validation\ValidatorInstance;
+use Marrow\Validation\ValidatorInstance;
 
 function makeValidator(array $data, array $rules): ValidatorInstance
 {

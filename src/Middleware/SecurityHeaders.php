@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Http\ContentSecurityPolicy;
-use Ironflow\Http\Request;
-use Ironflow\Http\Shield\ShieldConfig;
+use Marrow\Http\ContentSecurityPolicy;
+use Marrow\Http\Request;
+use Marrow\Http\Shield\ShieldConfig;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Adds common security headers to every response — part of IronFlow's Shield
+ * Adds common security headers to every response — part of Marrow's Shield
  * bundle (see ShieldConfig), inspired by AdonisJS Shield.
  *
  * Configurable via config/shield.php → 'headers' (associative array of

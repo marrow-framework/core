@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Mail;
+namespace Marrow\Mail;
 
 use Symfony\Component\Mailer\Mailer as SymfonyMailer;
 use Symfony\Component\Mailer\MailerInterface;

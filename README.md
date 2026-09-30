@@ -1,13 +1,13 @@
-# IronFlow Framework
+# Marrow Framework
 
-![IronFlow](https://github.com/AureDulvresse/ironflow-framework/blob/main/logo.png)
+![Marrow](https://github.com/AureDulvresse/marrow/blob/main/logo.png)
 
-The technical core of IronFlow: dependency container, HMVC modules, HTTP routing, CLI, ORM, security, and application services.
+The technical core of Marrow: dependency container, HMVC modules, HTTP routing, CLI, ORM, security, and application services.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/ironflow-framework/framework/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ironflow-framework/framework/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/marrow/framework/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/marrow/framework/actions/workflows/ci.yml)
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&logo=php&logoColor=white)](https://php.net)
 [![License MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.3.0-f97316?style=flat-square)](https://github.com/ironflow-framework/framework/releases)
+[![Version](https://img.shields.io/badge/version-2.3.0-f97316?style=flat-square)](https://github.com/marrow/framework/releases)
 
 This repository contains the framework core. It is not a ready-to-use application project: for starting an application, it is recommended to use the associated skeleton repository.
 
@@ -33,7 +33,7 @@ This repository contains the framework core. It is not a ready-to-use applicatio
 
 ## About
 
-IronFlow is a PHP 8.2+ framework designed for modular, scalable, and testable applications. The project core includes the following building blocks:
+Marrow is a PHP 8.2+ framework designed for modular, scalable, and testable applications. The project core includes the following building blocks:
 
 - dependency container with automatic resolution via reflection;
 - module system with explicit dependencies;
@@ -65,13 +65,13 @@ The framework follows a modern architectural direction: clear separation of conc
 ### Recommended option: use the skeleton
 
 ```bash
-composer create-project ironflow/skeleton mon-app
+composer create-project marrow/skeleton mon-app
 ```
 
 ### Direct package option
 
 ```bash
-composer require ironflow/framework
+composer require marrow/framework
 ```
 
 ---
@@ -118,7 +118,7 @@ tests/
 
 ## Container and dependency injection
 
-IronFlow relies on a dependency container that resolves services through reflection on PHP types. It supports:
+Marrow relies on a dependency container that resolves services through reflection on PHP types. It supports:
 
 - automatic resolution by type hint;
 - explicit binding via `bind()` or `singleton()`;
@@ -129,8 +129,8 @@ IronFlow relies on a dependency container that resolves services through reflect
 Example:
 
 ```php
-use Ironflow\Attributes\Inject;
-use Ironflow\Events\Dispatcher;
+use Marrow\Attributes\Inject;
+use Marrow\Events\Dispatcher;
 
 class PostService
 {
@@ -149,7 +149,7 @@ The container also handles transitive dependencies and contextual resolution bas
 
 ## Modules
 
-A module is the main building block of IronFlow. Each module is declared via the `#[Module]` attribute and has a two-phase lifecycle:
+A module is the main building block of Marrow. Each module is declared via the `#[Module]` attribute and has a two-phase lifecycle:
 
 1. `register()`: register bindings and module services;
 2. `boot()`: load routes, Twig namespaces, event listeners, and other runtime elements.
@@ -157,8 +157,8 @@ A module is the main building block of IronFlow. Each module is declared via the
 Example:
 
 ```php
-use Ironflow\Module\Attributes\Module;
-use Ironflow\Module\BaseModule;
+use Marrow\Module\Attributes\Module;
+use Marrow\Module\BaseModule;
 
 #[Module(
     name: 'blog',
@@ -188,7 +188,7 @@ This ensures a module only starts when its dependencies are correctly declared a
 
 ## HTTP routing
 
-IronFlow’s router is fluent and framework-oriented. It supports:
+Marrow’s router is fluent and framework-oriented. It supports:
 
 - standard HTTP methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`);
 - route groups with `prefix`, `middleware`, and `namespace`;
@@ -220,7 +220,7 @@ A module doesn't have to live under the application's local `modules/` directory
 
 ## ORM and database
 
-IronFlow includes a model-oriented ORM without exposing a generic query builder as the primary design layer. Model classes can define attributes, casts, relationships, and scopes.
+Marrow includes a model-oriented ORM without exposing a generic query builder as the primary design layer. Model classes can define attributes, casts, relationships, and scopes.
 
 Example:
 
@@ -310,19 +310,19 @@ Thresholds are configured per check in `config/health.php`. Writing a custom che
 
 ## Package ecosystem
 
-A module isn't limited to the application's local `modules/` directory: `BaseModule::path()` resolves `Views/`, `routes.php`, and migrations by reflecting on the module class's own file location, so a module ships just as well from `vendor/`. Installing a package that declares its module in its own `composer.json` (`extra.ironflow.modules`) is enough on its own — `PackageDiscovery` picks it up automatically at boot, no edit to `config/modules.php` required.
+A module isn't limited to the application's local `modules/` directory: `BaseModule::path()` resolves `Views/`, `routes.php`, and migrations by reflecting on the module class's own file location, so a module ships just as well from `vendor/`. Installing a package that declares its module in its own `composer.json` (`extra.marrow.modules`) is enough on its own — `PackageDiscovery` picks it up automatically at boot, no edit to `config/modules.php` required.
 
 Official companion packages built on this mechanism, each an independent, self-documented Composer package (own `README.md`/`LICENSE`, installable on its own):
 
 | Package | Purpose |
 |---|---|
-| [`ironflow-framework/form-builder`](https://github.com/ironflow-framework/form-builder) | Django-style declarative forms — define fields on the backend, render and validate them without duplicating rules on the frontend |
-| [`ironflow-framework/anvil`](https://github.com/ironflow-framework/anvil) | Local Docker Compose development environment (Sail's role, under its own name) |
-| [`ironflow-framework/compass`](https://github.com/ironflow-framework/compass) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
+| [`marrow/form-builder`](https://github.com/marrow/form-builder) | Django-style declarative forms — define fields on the backend, render and validate them without duplicating rules on the frontend |
+| [`marrow/anvil`](https://github.com/marrow/anvil) | Local Docker Compose development environment (Sail's role, under its own name) |
+| [`marrow/compass`](https://github.com/marrow/compass) | Generates `AGENTS.md` — a live map of routes/modules/config for AI coding agents and new contributors |
 
 ```bash
-composer require ironflow-framework/form-builder
-composer require --dev ironflow-framework/anvil ironflow-framework/compass
+composer require marrow/form-builder
+composer require --dev marrow/anvil marrow/compass
 ```
 
 See [Modules (HMVC)](docs/modules.md#distributing-a-module-as-a-package) for how the discovery mechanism itself works, if you want to ship your own.
@@ -378,7 +378,7 @@ Contributions are welcome in line with the project conventions:
 ### Recommended workflow
 
 ```bash
-git clone https://github.com/ironflow-framework/framework.git
+git clone https://github.com/marrow/framework.git
 cd framework
 composer install
 composer test
@@ -388,4 +388,4 @@ Then open a PR with a concise description of the feature or bug fix.
 
 ---
 
-IronFlow aims to provide a solid foundation for modular, testable, and maintainable PHP applications without relying on excessive abstractions or opaque conventions.
+Marrow aims to provide a solid foundation for modular, testable, and maintainable PHP applications without relying on excessive abstractions or opaque conventions.

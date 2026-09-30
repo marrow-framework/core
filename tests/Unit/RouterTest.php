@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Container;
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Routing\Route;
-use Ironflow\Routing\Router;
-use Ironflow\Tests\Unit\Fixtures\AttributeRoutedController;
-use Ironflow\Tests\Unit\Fixtures\MultiPrefixRoutedController;
-use Ironflow\Tests\Unit\Fixtures\RouterArticleStub;
+use Marrow\Container;
+use Marrow\Exceptions\HttpException;
+use Marrow\Routing\Route;
+use Marrow\Routing\Router;
+use Marrow\Tests\Unit\Fixtures\AttributeRoutedController;
+use Marrow\Tests\Unit\Fixtures\MultiPrefixRoutedController;
+use Marrow\Tests\Unit\Fixtures\RouterArticleStub;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
@@ -105,9 +105,9 @@ test('getCurrentRoute is null until dispatch() matches a route', function () {
 });
 
 test('getCurrentRoute reflects the most recently dispatched route', function () {
-    $this->router->get('/ping', fn () => new \Ironflow\Http\Response('pong'))->name('ping');
+    $this->router->get('/ping', fn () => new \Marrow\Http\Response('pong'))->name('ping');
 
-    $this->router->dispatch(\Ironflow\Http\Request::create('/ping'));
+    $this->router->dispatch(\Marrow\Http\Request::create('/ping'));
 
     expect($this->router->getCurrentRoute())->not->toBeNull();
     expect($this->router->getCurrentRoute()->getName())->toBe('ping');

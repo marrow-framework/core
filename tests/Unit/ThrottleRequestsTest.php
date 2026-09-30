@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Cache\CacheManager;
-use Ironflow\Container;
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Http\Request;
-use Ironflow\Middleware\Pipeline;
-use Ironflow\Middleware\ThrottleRequests;
-use Ironflow\RateLimiting\RateLimiter;
+use Marrow\Cache\CacheManager;
+use Marrow\Container;
+use Marrow\Exceptions\HttpException;
+use Marrow\Http\Request;
+use Marrow\Middleware\Pipeline;
+use Marrow\Middleware\ThrottleRequests;
+use Marrow\RateLimiting\RateLimiter;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //
@@ -35,7 +35,7 @@ test('handle() accepts string parameters exactly as the pipeline colon-syntax pr
 
     // Matches what Pipeline::resolve() actually passes for 'throttle:3,1' —
     // both args as strings, not ints. This alone reproduces the bug.
-    $response = $middleware->handle($request, fn ($req) => new \Ironflow\Http\Response('ok'), '3', '1');
+    $response = $middleware->handle($request, fn ($req) => new \Marrow\Http\Response('ok'), '3', '1');
 
     expect($response->getStatusCode())->toBe(200);
     expect($response->headers->get('X-RateLimit-Limit'))->toBe('3');
@@ -50,15 +50,15 @@ test('a route using throttle:N,M survives a full Pipeline dispatch without a Typ
 
     $response = $pipeline
         ->send($request)
-        ->through(['Ironflow\\Middleware\\ThrottleRequests:3,1'])
-        ->then(fn ($req) => new \Ironflow\Http\Response('ok'));
+        ->through(['Marrow\\Middleware\\ThrottleRequests:3,1'])
+        ->then(fn ($req) => new \Marrow\Http\Response('ok'));
 
     expect($response->getStatusCode())->toBe(200);
 });
 
 test('the third request within the window is rejected with 429 once the limit is reached', function () {
     $middleware = throttleMiddleware();
-    $next = fn ($req) => new \Ironflow\Http\Response('ok');
+    $next = fn ($req) => new \Marrow\Http\Response('ok');
 
     $middleware->handle(Request::create('/login', 'POST', server: ['REMOTE_ADDR' => '1.2.3.4']), $next, '2', '1');
     $middleware->handle(Request::create('/login', 'POST', server: ['REMOTE_ADDR' => '1.2.3.4']), $next, '2', '1');

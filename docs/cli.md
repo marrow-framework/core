@@ -1,6 +1,6 @@
 # The `forge` CLI
 
-`forge` is IronFlow's console entry point — the equivalent of Laravel's
+`forge` is Marrow's console entry point — the equivalent of Laravel's
 `artisan` or AdonisJS's `ace`, built on `symfony/console`.
 
 ```bash
@@ -19,7 +19,7 @@ after `config/modules.php` correctly enables that module.
 ```php
 namespace App\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 class PruneOldLogs extends Command
 {
@@ -181,8 +181,8 @@ serving `public/` directly with no router otherwise.
 A module distributed as a Composer package can register its own `forge`
 commands the same way a local module does, via `#[Module(commands: [...])]`
 (see [Modules](modules.md#distributing-a-module-as-a-package)).
-`ironflow-framework/compass` does exactly this: installing it adds
+`marrow/compass` does exactly this: installing it adds
 `ai:context`, which generates an `AGENTS.md` file listing every registered
 route, module, and config file — a live map for an AI coding agent (or a new
 contributor) to read before exploring the codebase, immediately available
-after `composer require --dev ironflow-framework/compass`, no wiring step.
+after `composer require --dev marrow/compass`, no wiring step.

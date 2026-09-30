@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
 /**
  * Base seeder class.

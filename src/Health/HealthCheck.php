@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Health;
+namespace Marrow\Health;
 
 /**
  * Contract for a single health probe. Implementations should be fast and

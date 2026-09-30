@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Database\Attributes\Column;
-use Ironflow\Database\Attributes\Table;
-use Ironflow\Database\Model;
+use Marrow\Database\Attributes\Column;
+use Marrow\Database\Attributes\Table;
+use Marrow\Database\Model;
 
 #[Table('articles')]
 #[Column('title')]

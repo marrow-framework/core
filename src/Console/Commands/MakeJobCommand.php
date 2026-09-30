@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new queue Job class.
@@ -36,7 +36,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Queue\\Job;
+use Marrow\\Queue\\Job;
 
 class {$name} extends Job
 {

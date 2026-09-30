@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Schema;
+namespace Marrow\Database\Schema;
 
 use Doctrine\DBAL\Types\Types;
 

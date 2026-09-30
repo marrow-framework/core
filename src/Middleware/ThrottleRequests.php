@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Http\Request;
-use Ironflow\RateLimiting\RateLimiter;
+use Marrow\Exceptions\HttpException;
+use Marrow\Http\Request;
+use Marrow\RateLimiting\RateLimiter;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

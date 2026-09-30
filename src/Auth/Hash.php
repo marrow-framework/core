@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
 /**
  * Password hashing using Argon2id.

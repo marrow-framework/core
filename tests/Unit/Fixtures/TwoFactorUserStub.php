@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Auth\Concerns\HasTwoFactor;
+use Marrow\Auth\Concerns\HasTwoFactor;
 
 class TwoFactorUserStub
 {

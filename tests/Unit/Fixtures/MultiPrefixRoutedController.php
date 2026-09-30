@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Routing\Attributes\Route;
+use Marrow\Routing\Attributes\Route;
 
 #[Route('/posts')]
 #[Route('/articles')]

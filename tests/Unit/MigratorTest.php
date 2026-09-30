@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Database\Connection;
-use Ironflow\Database\Migrations\Migrator;
+use Marrow\Database\Connection;
+use Marrow\Database\Migrations\Migrator;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //
@@ -16,7 +16,7 @@ use Ironflow\Database\Migrations\Migrator;
 
 beforeEach(function () {
     $this->conn = new Connection(['driver' => 'sqlite', 'database' => ':memory:']);
-    $this->dir  = sys_get_temp_dir() . '/ironflow-migrator-test-' . uniqid();
+    $this->dir  = sys_get_temp_dir() . '/marrow-migrator-test-' . uniqid();
     mkdir($this->dir, 0755, true);
 });
 
@@ -31,7 +31,7 @@ function writeMigration(string $dir, string $name, string $upBody, string $downB
 {
     file_put_contents($dir . "/{$name}.php", <<<PHP
 <?php
-return new class extends \\Ironflow\\Database\\Migrations\\Migration {
+return new class extends \\Marrow\\Database\\Migrations\\Migration {
     public function up(): void { {$upBody} }
     public function down(): void { {$downBody} }
 };

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Attributes\Inject;
+use Marrow\Attributes\Inject;
 
 class ModuleBServiceNeedingNamedBinding
 {

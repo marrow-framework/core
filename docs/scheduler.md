@@ -1,6 +1,6 @@
 # Task Scheduling
 
-`Ironflow\Scheduling\Schedule` lets you define every recurring task in one
+`Marrow\Scheduling\Schedule` lets you define every recurring task in one
 place, triggered by a **single** cron entry instead of one crontab line per
 task.
 
@@ -24,7 +24,7 @@ class ReportingModule extends BaseModule
 {
     public function boot(): void
     {
-        $schedule = $this->container->make(\Ironflow\Scheduling\Schedule::class);
+        $schedule = $this->container->make(\Marrow\Scheduling\Schedule::class);
 
         $schedule->call(fn () => Cache::flush())->daily();
         $schedule->command('reports:generate')->dailyAt('02:00')->withoutOverlapping();

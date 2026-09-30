@@ -2,7 +2,7 @@
 
 ## Guards
 
-`Ironflow\Auth\AuthManager` manages multiple named guards, configured in
+`Marrow\Auth\AuthManager` manages multiple named guards, configured in
 `config/auth.php`:
 
 ```php
@@ -16,7 +16,7 @@ return [
 ```
 
 ```php
-$auth = app(\Ironflow\Auth\AuthManager::class);
+$auth = app(\Marrow\Auth\AuthManager::class);
 
 $auth->attempt(['email' => $email, 'password' => $password]);  // session guard: verifies + logs in
 $auth->check();
@@ -63,7 +63,7 @@ See [Middleware](middleware.md).
 ## Password hashing
 
 ```php
-use Ironflow\Auth\Hash;
+use Marrow\Auth\Hash;
 
 Hash::make($password);              // Argon2id
 Hash::verify($password, $hash);
@@ -76,7 +76,7 @@ despite the name — it's Argon2id under the hood, not bcrypt.
 ## Authorization — `Gate` and Policies
 
 ```php
-$gate = app(\Ironflow\Auth\Gate::class);
+$gate = app(\Marrow\Auth\Gate::class);
 
 $gate->define('moderate', fn (object $user) => $user->hasRole('moderator'));
 $gate->allows('moderate');                        // bool
@@ -87,7 +87,7 @@ $gate->allows('update', $post);                   // → PostPolicy::update($use
 ```
 
 ```php
-class PostPolicy extends \Ironflow\Auth\Policy
+class PostPolicy extends \Marrow\Auth\Policy
 {
     public function before(object $user, string $ability): ?bool
     {
@@ -180,7 +180,7 @@ Permission slug convention: `"resource.action"` (`posts.create`, `users.delete`)
 ### Traits — apply to your User model
 
 ```php
-use Ironflow\Auth\Concerns\{HasRole, HasPermission, HasTwoFactor, Auditable};
+use Marrow\Auth\Concerns\{HasRole, HasPermission, HasTwoFactor, Auditable};
 
 class User extends Model
 {
@@ -266,7 +266,7 @@ class Post extends Model
 
 `auditCreated()`/`auditUpdated($original)`/`auditDeleted()` are **not**
 wired to `save()`/`delete()` automatically. `Model::fireEvent()` only
-dispatches an event if a class named `Ironflow\Events\Model\{Created,
+dispatches an event if a class named `Marrow\Events\Model\{Created,
 Updated, Deleted, ...}` exists — the framework ships none of them — so the
 simplest way to auto-audit a model is to override `save()`/`delete()`
 directly:
@@ -290,7 +290,7 @@ class Post extends Model
 ```
 
 Or, if you'd rather use real model events, define the
-`Ironflow\Events\Model\{Created,Updated,Deleted}` classes yourself (see
+`Marrow\Events\Model\{Created,Updated,Deleted}` classes yourself (see
 [Database & ORM](database.md#model-events)) and call the matching
 `audit*()` method from a listener.
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Generate a new Policy class.
@@ -76,7 +76,7 @@ declare(strict_types=1);
 
 namespace {$namespace};
 
-use Ironflow\Auth\Policy;
+use Marrow\Auth\Policy;
 {$modelImport}
 class {$className} extends Policy
 {

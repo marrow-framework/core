@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new controller class — plain, resourceful (`--resource`), or
@@ -53,7 +53,7 @@ class MakeControllerCommand extends Command
     private function stub(string $ns, string $name, string $methods, bool $api): string
     {
         $base    = $api ? 'ApiController' : 'Controller';
-        $useBase = "use Ironflow\\Http\\{$base};";
+        $useBase = "use Marrow\\Http\\{$base};";
 
         return <<<PHP
 <?php
@@ -62,8 +62,8 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Http\\Request;
-use Ironflow\\Http\\Response;
+use Marrow\\Http\\Request;
+use Marrow\\Http\\Response;
 {$useBase}
 
 class {$name} extends {$base}

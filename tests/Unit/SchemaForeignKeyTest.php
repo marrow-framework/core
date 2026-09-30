@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Database\Schema\Table;
+use Marrow\Database\Schema\Table;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //

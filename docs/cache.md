@@ -1,6 +1,6 @@
 # Cache
 
-`Ironflow\Cache\CacheManager` is a PSR-6-backed cache wrapper over
+`Marrow\Cache\CacheManager` is a PSR-6-backed cache wrapper over
 `symfony/cache`, configured entirely from `config/cache.php`.
 
 ## Drivers
@@ -23,7 +23,7 @@ return [
 ## Usage
 
 ```php
-$cache = app(\Ironflow\Cache\CacheManager::class);
+$cache = app(\Marrow\Cache\CacheManager::class);
 
 $cache->put('key', $value, ttl: 3600);
 $cache->get('key', 'default');

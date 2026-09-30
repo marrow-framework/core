@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Http\Shield\ShieldConfig;
+use Marrow\Http\Shield\ShieldConfig;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 

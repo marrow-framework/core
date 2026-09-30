@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
-use Ironflow\Database\Connection;
-use Ironflow\Http\Request;
+use Marrow\Database\Connection;
+use Marrow\Http\Request;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Throwable;
@@ -93,7 +93,7 @@ class JwtGuard implements GuardInterface
         // caller-supplied $claims (previously array_merge()'s argument order
         // let $claims silently clobber sub/exp/iat/iss).
         $payload = array_merge($claims, [
-            'iss' => $_ENV['APP_URL'] ?? 'ironflow',
+            'iss' => $_ENV['APP_URL'] ?? 'marrow',
             'sub' => $user->id,
             'iat' => $now,
             'exp' => $now + $ttl,

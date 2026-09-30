@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Template;
+namespace Marrow\Template;
 
-use Ironflow\Application;
-use Ironflow\Container;
-use Ironflow\Routing\Router;
-use Ironflow\Template\ComponentRegistry;
+use Marrow\Application;
+use Marrow\Container;
+use Marrow\Routing\Router;
+use Marrow\Template\ComponentRegistry;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
@@ -15,7 +15,7 @@ use Twig\TwigFunction;
 use Twig\TwigTest;
 
 /**
- * Twig extension exposing all IronFlow helpers:
+ * Twig extension exposing all Marrow helpers:
  * functions (route, asset, csrf_token, auth_user, config, old, errors, current_route, ...),
  * filters (truncate, slug, markdown, time_ago, money),
  * tests (admin),
@@ -74,7 +74,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
 
     public function funcRoute(string $name, array $params = []): string
     {
-        return $this->container->make(\Ironflow\Routing\Router::class)->route($name, $params);
+        return $this->container->make(\Marrow\Routing\Router::class)->route($name, $params);
     }
 
     public function funcAsset(string $path): string
@@ -194,7 +194,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
 
     public function funcCsrfToken(): string
     {
-        return $this->container->make(\Ironflow\Session\SessionManager::class)->csrfToken();
+        return $this->container->make(\Marrow\Session\SessionManager::class)->csrfToken();
     }
 
     public function funcCsrfField(): string
@@ -211,7 +211,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     public function funcAuthUser(): mixed
     {
         try {
-            return $this->container->make(\Ironflow\Auth\AuthManager::class)->user();
+            return $this->container->make(\Marrow\Auth\AuthManager::class)->user();
         } catch (\Throwable) {
             return null;
         }
@@ -220,7 +220,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     public function funcAuthCheck(): bool
     {
         try {
-            return $this->container->make(\Ironflow\Auth\AuthManager::class)->check();
+            return $this->container->make(\Marrow\Auth\AuthManager::class)->check();
         } catch (\Throwable) {
             return false;
         }
@@ -228,13 +228,13 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
 
     public function funcConfig(string $key, mixed $default = null): mixed
     {
-        return $this->container->make(\Ironflow\Config\Repository::class)->get($key, $default);
+        return $this->container->make(\Marrow\Config\Repository::class)->get($key, $default);
     }
 
     public function funcOld(string $key, mixed $default = ''): mixed
     {
         try {
-            $session = $this->container->make(\Ironflow\Session\SessionManager::class);
+            $session = $this->container->make(\Marrow\Session\SessionManager::class);
             return $session->get('_old_input.' . $key, $default);
         } catch (\Throwable) {
             return $default;
@@ -244,7 +244,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     public function funcErrors(?string $key = null): mixed
     {
         try {
-            $session = $this->container->make(\Ironflow\Session\SessionManager::class);
+            $session = $this->container->make(\Marrow\Session\SessionManager::class);
             $errors = $session->get('_errors', []);
             if ($key === null) {
                 return $errors;
@@ -277,7 +277,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
         }
 
         try {
-            $session = $this->container->make(\Ironflow\Session\SessionManager::class);
+            $session = $this->container->make(\Marrow\Session\SessionManager::class);
             $value   = $session->pull($type);  // reads once and removes from session
             $this->flashCache[$type] = $value !== null ? (string) $value : null;
         } catch (\Throwable) {
@@ -296,7 +296,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
         // No try/catch: a Gate resolution failure is a real misconfiguration and
         // must surface as an error, not silently read as "permission denied" —
         // the two are indistinguishable to a template author otherwise.
-        $gate = $this->container->make(\Ironflow\Auth\Gate::class);
+        $gate = $this->container->make(\Marrow\Auth\Gate::class);
         return $gate->allows($ability, empty($arguments) ? [] : $arguments);
     }
 
@@ -306,9 +306,9 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     }
 
     /** Returns the Gate instance for advanced usage in templates. */
-    public function funcGate(): \Ironflow\Auth\Gate
+    public function funcGate(): \Marrow\Auth\Gate
     {
-        return $this->container->make(\Ironflow\Auth\Gate::class);
+        return $this->container->make(\Marrow\Auth\Gate::class);
     }
 
     public function funcDump(array $context, mixed ...$vars): string
@@ -429,7 +429,7 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     {
         return [
             'app' => [
-                'name' => $_ENV['APP_NAME'] ?? 'IronFlow',
+                'name' => $_ENV['APP_NAME'] ?? 'Marrow',
                 'env' => $_ENV['APP_ENV'] ?? 'production',
                 'debug' => (bool) ($_ENV['APP_DEBUG'] ?? false),
                 'version' => $_ENV['APP_VERSION'] ?? '0.1.0',

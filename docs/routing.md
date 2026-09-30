@@ -1,6 +1,6 @@
 # Routing
 
-`Ironflow\Routing\Router` (`framework/src/Routing/Router.php`) is a fluent
+`Marrow\Routing\Router` (`framework/src/Routing/Router.php`) is a fluent
 router with groups, resource routes, named routes, middleware aliases, and
 automatic controller-method dependency injection.
 
@@ -139,7 +139,7 @@ class PostController extends Controller
 ## Closures as actions
 
 ```php
-$router->get('/status', function (\Ironflow\Http\Request $request) {
+$router->get('/status', function (\Marrow\Http\Request $request) {
     return ['status' => 'ok'];
 });
 ```
@@ -155,7 +155,7 @@ An alternative to writing `$router->get(...)` by hand for each action —
 declare the route on the controller method itself:
 
 ```php
-use Ironflow\Routing\Attributes\Route;
+use Marrow\Routing\Attributes\Route;
 
 #[Route('/posts', middleware: 'web')]
 class PostController extends Controller
@@ -169,7 +169,7 @@ class PostController extends Controller
 ```
 
 Then register the whole controller from `routes.php`, same as any other
-route — this only changes where a route's metadata lives, not IronFlow's
+route — this only changes where a route's metadata lives, not Marrow's
 routing-is-module-only convention (see [Modules](modules.md)):
 
 ```php

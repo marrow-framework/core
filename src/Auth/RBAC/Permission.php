@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth\RBAC;
+namespace Marrow\Auth\RBAC;
 
-use Ironflow\Application;
-use Ironflow\Database\Connection;
-use Ironflow\Auth\RBAC\Role;
+use Marrow\Application;
+use Marrow\Database\Connection;
+use Marrow\Auth\RBAC\Role;
 
 /**
  * RBAC Permission model.

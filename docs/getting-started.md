@@ -9,12 +9,12 @@
 
 ## Creating a new application
 
-IronFlow ships as two repositories: the **framework** (`ironflow-framework/framework`,
-a library — never run standalone) and the **skeleton** (`ironflow-framework/skeleton`,
+Marrow ships as two repositories: the **framework** (`marrow/framework`,
+a library — never run standalone) and the **skeleton** (`marrow/skeleton`,
 a ready-to-run application that depends on it). You always start from the skeleton:
 
 ```bash
-composer create-project ironflow-framework/skeleton my-app
+composer create-project marrow/skeleton my-app
 cd my-app
 ```
 
@@ -119,7 +119,7 @@ Add a route in a module's `routes.php` (or generate a whole new module with
 
 ```php
 // modules/Home/routes.php
-$router->get('/hello/{name}', function (\Ironflow\Http\Request $request, string $name) {
+$router->get('/hello/{name}', function (\Marrow\Http\Request $request, string $name) {
     return "Hello, {$name}!";
 });
 ```
@@ -133,9 +133,9 @@ Beyond the framework core, a few official packages extend it — each one an
 independent, self-documented Composer package, not something bundled in:
 
 ```bash
-composer require ironflow-framework/form-builder        # Django-style backend forms
-composer require --dev ironflow-framework/anvil          # Docker Compose dev environment
-composer require --dev ironflow-framework/compass         # generates AGENTS.md for AI coding agents
+composer require marrow/form-builder        # Django-style backend forms
+composer require --dev marrow/anvil          # Docker Compose dev environment
+composer require --dev marrow/compass         # generates AGENTS.md for AI coding agents
 ```
 
 All three register themselves automatically on install (auto-discovery — see

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new console command class extending Command.
@@ -44,7 +44,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Console\\Command;
+use Marrow\\Console\\Command;
 
 class {$name} extends Command
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
-use Ironflow\Exceptions\HttpException;
+use Marrow\Exceptions\HttpException;
 
 /**
  * A Gate scoped to one explicit policy class — the AdonisJS-v6 "bouncer.with()"

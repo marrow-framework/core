@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Http\Request;
-use Ironflow\Http\Shield\ShieldConfig;
-use Ironflow\Session\SessionManager;
+use Marrow\Exceptions\HttpException;
+use Marrow\Http\Request;
+use Marrow\Http\Shield\ShieldConfig;
+use Marrow\Session\SessionManager;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Verifies the CSRF token on state-changing requests — part of IronFlow's
+ * Verifies the CSRF token on state-changing requests — part of Marrow's
  * Shield bundle (see ShieldConfig), inspired by AdonisJS Shield.
  *
  * Exempt URIs can be declared in two ways:

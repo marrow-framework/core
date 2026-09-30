@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Http;
+namespace Marrow\Http;
 
-use Ironflow\Container;
-use Ironflow\Exceptions\Handler as ExceptionHandler;
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Middleware\MiddlewareResolver;
-use Ironflow\Middleware\Pipeline;
-use Ironflow\Routing\Router;
-use Ironflow\Session\SessionManager;
+use Marrow\Container;
+use Marrow\Exceptions\Handler as ExceptionHandler;
+use Marrow\Exceptions\HttpException;
+use Marrow\Middleware\MiddlewareResolver;
+use Marrow\Middleware\Pipeline;
+use Marrow\Routing\Router;
+use Marrow\Session\SessionManager;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
@@ -49,9 +49,9 @@ class Kernel
 
             $globalMiddlewares = $resolver->resolve($this->middlewareConfig['global'] ?? []);
 
-            // Prepend hot-reload middleware in local/dev mode (handles /__ironflow/ping)
+            // Prepend hot-reload middleware in local/dev mode (handles /__marrow/ping)
             if ($this->isDevMode()) {
-                array_unshift($globalMiddlewares, \Ironflow\Middleware\HotReloadMiddleware::class);
+                array_unshift($globalMiddlewares, \Marrow\Middleware\HotReloadMiddleware::class);
             }
 
             $pipeline = new Pipeline($this->container);

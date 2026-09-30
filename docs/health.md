@@ -1,6 +1,6 @@
 # Health Checks
 
-`Ironflow\Health\HealthManager` aggregates pluggable probes into one
+`Marrow\Health\HealthManager` aggregates pluggable probes into one
 report — wire it to a `/health` route for load balancers, uptime monitors,
 or container orchestrators to poll.
 
@@ -47,7 +47,7 @@ $router->get('/health', [HomeController::class, 'health']);
 ```
 
 ```php
-public function health(\Ironflow\Health\HealthManager $health): JsonResponse
+public function health(\Marrow\Health\HealthManager $health): JsonResponse
 {
     $report = $health->report();
     return $this->json($report, $report['status'] === 'ok' ? 200 : 503);
@@ -77,12 +77,12 @@ is the conventional choice for load-balancer health checks).
 ```php
 namespace App\Health;
 
-use Ironflow\Health\HealthCheck;
-use Ironflow\Health\HealthResult;
+use Marrow\Health\HealthCheck;
+use Marrow\Health\HealthResult;
 
 class QueueDepthHealthCheck implements HealthCheck
 {
-    public function __construct(private readonly \Ironflow\Queue\QueueManager $queue) {}
+    public function __construct(private readonly \Marrow\Queue\QueueManager $queue) {}
 
     public function name(): string
     {
@@ -102,7 +102,7 @@ class QueueDepthHealthCheck implements HealthCheck
 Register it from a module's `boot()`:
 
 ```php
-$this->container->make(\Ironflow\Health\HealthManager::class)
+$this->container->make(\Marrow\Health\HealthManager::class)
     ->register(new \App\Health\QueueDepthHealthCheck($queueManager));
 ```
 

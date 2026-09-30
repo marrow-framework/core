@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Module;
+namespace Marrow\Module;
 
-use Ironflow\Container;
-use Ironflow\Events\Dispatcher;
-use Ironflow\Routing\Router;
-use Ironflow\Template\Engine;
+use Marrow\Container;
+use Marrow\Events\Dispatcher;
+use Marrow\Routing\Router;
+use Marrow\Template\Engine;
 
 /**
  * Base class for all application modules.

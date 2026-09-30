@@ -27,7 +27,7 @@ controller method runs.
 An alternative to hand-writing the `rules()` array:
 
 ```php
-use Ironflow\Validation\Attributes\{Required, Email, StringType, Max, In, Nullable, Confirmed, Rule};
+use Marrow\Validation\Attributes\{Required, Email, StringType, Max, In, Nullable, Confirmed, Rule};
 
 class StorePostRequest extends FormRequest
 {
@@ -66,7 +66,7 @@ on real declared properties safely.
 ## Manual validation
 
 ```php
-use Ironflow\Validation\ValidatorFactory;
+use Marrow\Validation\ValidatorFactory;
 
 $validator = (new ValidatorFactory())->make($data, $rules, $messages);
 
@@ -145,5 +145,5 @@ message explicitly if your application needs a different language).
 
 For a Django-style declarative form — fields defined once as class
 properties, rendered *and* validated from the same definition instead of a
-raw rules array — see the `ironflow-framework/form-builder` package, built
+raw rules array — see the `marrow/form-builder` package, built
 on top of this validation engine (not part of the framework core).

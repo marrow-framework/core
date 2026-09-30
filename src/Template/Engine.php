@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Template;
+namespace Marrow\Template;
 
-use Ironflow\Container;
+use Marrow\Container;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFunction;
 
 /**
  * Twig engine wrapper. Manages namespaces, view composers, and global data.
- * App code only ever imports Ironflow\Template\Engine — never Twig directly.
+ * App code only ever imports Marrow\Template\Engine — never Twig directly.
  */
 class Engine
 {

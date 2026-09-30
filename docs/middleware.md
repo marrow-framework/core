@@ -108,7 +108,7 @@ $router->get('/admin', Controller::class . '@index')->middleware(['web', 'auth']
 | `ShareErrorsFromSession` | Pulls `_errors`/`_old_input` flashed by a failed validation redirect into Twig globals |
 | `MaintenanceMode` | 503 for every request while `storage/maintenance.flag` exists, unless a matching bypass cookie is present |
 | `RequestLogger` | Logs `METHOD /uri → STATUS (TIMEms)`; `php forge serve` parses this exact line to render its colourised output |
-| `HotReloadMiddleware` | Dev-only (`APP_ENV=local` or `APP_DEBUG=true`); serves `/__ironflow/ping` and injects a polling script into HTML responses |
+| `HotReloadMiddleware` | Dev-only (`APP_ENV=local` or `APP_DEBUG=true`); serves `/__marrow/ping` and injects a polling script into HTML responses |
 
 `SecurityHeaders` and `VerifyCsrfToken` both read the same `Http\Shield\ShieldConfig`
 — see [Security Hardening](security.md) for the full "Shield" bundle.
@@ -130,7 +130,7 @@ $router->get('/admin', Controller::class . '@index')->middleware(['web', 'auth']
 ```php
 namespace App\Middleware;
 
-use Ironflow\Http\Request;
+use Marrow\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureAdmin

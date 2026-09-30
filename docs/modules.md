@@ -1,6 +1,6 @@
 # Modules (HMVC)
 
-IronFlow organises application code into **HMVC modules** — self-contained
+Marrow organises application code into **HMVC modules** — self-contained
 units with their own controllers, models, views, routes, migrations, and
 console commands, wired together by explicit `imports`/`exports` rather than
 global auto-discovery.
@@ -36,8 +36,8 @@ php forge make:module Blog
 ```php
 namespace Modules\Blog;
 
-use Ironflow\Module\Attributes\Module;
-use Ironflow\Module\BaseModule;
+use Marrow\Module\Attributes\Module;
+use Marrow\Module\BaseModule;
 
 #[Module(
     name: 'blog',
@@ -189,14 +189,14 @@ A package can register its own module without the app editing
 {
     "name": "acme/blog-module",
     "extra": {
-        "ironflow": {
+        "marrow": {
             "modules": ["Acme\\BlogModule\\BlogModule"]
         }
     }
 }
 ```
 
-`Ironflow\Module\PackageDiscovery::discover()` reads
+`Marrow\Module\PackageDiscovery::discover()` reads
 `vendor/composer/installed.json` (a file Composer always generates) for this
 key across every installed package, and `Application::boot()` merges the
 result with `config/modules.php`'s `'enabled'` array before registering

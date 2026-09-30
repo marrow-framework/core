@@ -2,7 +2,7 @@
 
 ## Request
 
-`Ironflow\Http\Request` extends
+`Marrow\Http\Request` extends
 `Symfony\Component\HttpFoundation\Request`, adding:
 
 ```php

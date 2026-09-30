@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
-use Ironflow\Database\Model;
-use Ironflow\Database\Relations\HasManyThrough;
+use Marrow\Database\Model;
+use Marrow\Database\Relations\HasManyThrough;
 
 class RelationCountryModel extends Model
 {

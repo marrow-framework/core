@@ -1,6 +1,6 @@
 # Templating (Twig)
 
-`Ironflow\Template\Engine` wraps Twig — application code (and app-facing
+`Marrow\Template\Engine` wraps Twig — application code (and app-facing
 docs) should only ever reference `Template\Engine`, never Twig's classes
 directly.
 
@@ -33,7 +33,7 @@ extension.
 return $this->view('@blog/posts/show', ['post' => $post]);
 
 // Anywhere with the container:
-$html = app(\Ironflow\Template\Engine::class)->render('@blog/posts/show', ['post' => $post]);
+$html = app(\Marrow\Template\Engine::class)->render('@blog/posts/show', ['post' => $post]);
 
 // Global helper (same thing):
 $html = view('@blog/posts/show', ['post' => $post]);
@@ -75,7 +75,7 @@ full CommonMark implementation), `time_ago` (French relative time strings),
 Share your own per-request globals from anywhere with the `Engine`:
 
 ```php
-app(\Ironflow\Template\Engine::class)->shareGlobal('siteName', config('app.name'));
+app(\Marrow\Template\Engine::class)->shareGlobal('siteName', config('app.name'));
 ```
 
 ## View composers
@@ -83,7 +83,7 @@ app(\Ironflow\Template\Engine::class)->shareGlobal('siteName', config('app.name'
 Run a callback right before any template matching a pattern renders:
 
 ```php
-$engine->composer('@blog/*', function (\Ironflow\Template\ViewData $view) {
+$engine->composer('@blog/*', function (\Marrow\Template\ViewData $view) {
     $view->set('categories', Category::all());
 });
 ```
@@ -93,7 +93,7 @@ $engine->composer('@blog/*', function (\Ironflow\Template\ViewData $view) {
 ```php
 namespace App\View\Components;
 
-use Ironflow\Template\Component;
+use Marrow\Template\Component;
 
 class Alert extends Component
 {
@@ -108,7 +108,7 @@ class Alert extends Component
 ```
 
 ```php
-app(\Ironflow\Template\ComponentRegistry::class)->register('alert', Alert::class);
+app(\Marrow\Template\ComponentRegistry::class)->register('alert', Alert::class);
 ```
 
 ```twig

@@ -1,6 +1,6 @@
 # Mail
 
-`Ironflow\Mail\Mailer` wraps `symfony/mailer`.
+`Marrow\Mail\Mailer` wraps `symfony/mailer`.
 
 ## Configuration
 
@@ -24,7 +24,7 @@ set its own `From` address.
 ## Sending directly (fluent)
 
 ```php
-app(\Ironflow\Mail\Mailer::class)
+app(\Marrow\Mail\Mailer::class)
     ->to('jane@example.com')
     ->cc('team@example.com')
     ->subject('Welcome')
@@ -42,7 +42,7 @@ not resolved through the container.
 ## `Mailable` — reusable, testable messages
 
 ```php
-use Ironflow\Mail\Mailable;
+use Marrow\Mail\Mailable;
 use Symfony\Component\Mime\Email;
 
 class WelcomeMail extends Mailable
@@ -53,14 +53,14 @@ class WelcomeMail extends Mailable
     {
         return $this->makeEmail()
             ->to($this->user->email)
-            ->subject('Welcome to IronFlow')
+            ->subject('Welcome to Marrow')
             ->html($this->renderView('@blog/emails/welcome', ['user' => $this->user]));
     }
 }
 ```
 
 ```php
-app(\Ironflow\Mail\Mailer::class)->send(new WelcomeMail($user));
+app(\Marrow\Mail\Mailer::class)->send(new WelcomeMail($user));
 ```
 
 `build()` receives the raw `mail` config array (in case a `Mailable` needs

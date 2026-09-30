@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
-use Ironflow\Module\ModuleManager;
+use Marrow\Console\Command;
+use Marrow\Module\ModuleManager;
 
 /**
  * Prints the module dependency graph (imports/exports) computed by

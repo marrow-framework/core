@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
-use Ironflow\Application;
-use Ironflow\Database\Attributes\Column;
-use Ironflow\Database\Attributes\Table;
-use Ironflow\Database\Relations\BelongsTo;
-use Ironflow\Database\Relations\BelongsToMany;
-use Ironflow\Database\Relations\HasMany;
-use Ironflow\Database\Relations\HasManyThrough;
-use Ironflow\Database\Relations\HasOne;
-use Ironflow\Events\Dispatcher;
-use Ironflow\Support\Collection;
-use Ironflow\Support\Paginator;
+use Marrow\Application;
+use Marrow\Database\Attributes\Column;
+use Marrow\Database\Attributes\Table;
+use Marrow\Database\Relations\BelongsTo;
+use Marrow\Database\Relations\BelongsToMany;
+use Marrow\Database\Relations\HasMany;
+use Marrow\Database\Relations\HasManyThrough;
+use Marrow\Database\Relations\HasOne;
+use Marrow\Events\Dispatcher;
+use Marrow\Support\Collection;
+use Marrow\Support\Paginator;
 use DateTimeImmutable;
 use ReflectionClass;
 
@@ -277,7 +277,7 @@ abstract class Model
         // Lazy-load relation if method exists
         if (method_exists($this, $key)) {
             $relation = $this->$key();
-            if ($relation instanceof \Ironflow\Database\Relations\Relation) {
+            if ($relation instanceof \Marrow\Database\Relations\Relation) {
                 $result = $relation->getResults();
                 $this->relations[$key] = $result;
                 return $result;
@@ -362,19 +362,19 @@ abstract class Model
     }
 
     /**
-     * Backed by Ironflow\Support\Crypto (AES-256-GCM, authenticated). Throws
+     * Backed by Marrow\Support\Crypto (AES-256-GCM, authenticated). Throws
      * if APP_KEY is not configured — a prior version of this cast silently
      * stored/read the value in plaintext instead, which is equivalent to
      * not encrypting the column at all.
      */
     private function decryptCast(string $value): string
     {
-        return \Ironflow\Support\Crypto::decrypt($value);
+        return \Marrow\Support\Crypto::decrypt($value);
     }
 
     private function encryptCast(string $value): string
     {
-        return \Ironflow\Support\Crypto::encrypt($value);
+        return \Marrow\Support\Crypto::encrypt($value);
     }
 
     // ─────────────────────── Dirty tracking ──────────────────────────
@@ -522,12 +522,12 @@ abstract class Model
         return static::query()->where(static::make()->primaryKey, $id)->first();
     }
 
-    /** @throws \Ironflow\Exceptions\HttpException 404 if no row matches $id. */
+    /** @throws \Marrow\Exceptions\HttpException 404 if no row matches $id. */
     public static function findOrFail(int|string $id): static
     {
         $model = static::find($id);
         if ($model === null) {
-            throw new \Ironflow\Exceptions\HttpException(404, static::class . ' not found.');
+            throw new \Marrow\Exceptions\HttpException(404, static::class . ' not found.');
         }
         return $model;
     }
@@ -542,12 +542,12 @@ abstract class Model
         return static::query()->first();
     }
 
-    /** @throws \Ironflow\Exceptions\HttpException 404 if the query has no results. */
+    /** @throws \Marrow\Exceptions\HttpException 404 if the query has no results. */
     public static function firstOrFail(): static
     {
         $model = static::first();
         if ($model === null) {
-            throw new \Ironflow\Exceptions\HttpException(404, static::class . ' not found.');
+            throw new \Marrow\Exceptions\HttpException(404, static::class . ' not found.');
         }
         return $model;
     }
@@ -727,7 +727,7 @@ abstract class Model
             return true;
         }
 
-        $eventClass = 'Ironflow\\Events\\Model\\' . ucfirst($event);
+        $eventClass = 'Marrow\\Events\\Model\\' . ucfirst($event);
         if (!class_exists($eventClass)) {
             return true;
         }

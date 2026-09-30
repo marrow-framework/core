@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console;
+namespace Marrow\Console;
 
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\ArrayInput;

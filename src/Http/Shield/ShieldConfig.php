@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Http\Shield;
+namespace Marrow\Http\Shield;
 
 /**
- * Typed configuration for IronFlow's security bundle — security headers, CSP,
+ * Typed configuration for Marrow's security bundle — security headers, CSP,
  * HSTS and CSRF exemptions — inspired by AdonisJS Shield: one config source
  * (config/shield.php), one typed object, injected by constructor into
  * SecurityHeaders and VerifyCsrfToken instead of each reading raw config

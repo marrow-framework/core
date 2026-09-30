@@ -3,7 +3,7 @@
 The skeleton ships a working Vite + Tailwind CSS v4 pipeline for CSS/JS
 bundling and hot-reload, wired through three Twig functions
 (`vite_asset()`, `vite_dev_mode()`, `vite_client()`) already built into
-`Ironflow\Template\FrameworkExtension` — the tooling below only needs to
+`Marrow\Template\FrameworkExtension` — the tooling below only needs to
 match the two file locations those functions read.
 
 ## What's installed

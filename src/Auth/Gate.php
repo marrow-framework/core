@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth;
+namespace Marrow\Auth;
 
-use Ironflow\Container;
-use Ironflow\Exceptions\HttpException;
+use Marrow\Container;
+use Marrow\Exceptions\HttpException;
 
 /**
  * Authorization Gate — checks whether a user may perform an action.
@@ -280,7 +280,7 @@ class Gate
     /**
      * Guess the policy class for a model using sibling-namespace convention:
      *   Modules\Blog\Models\Post → Modules\Blog\Policies\PostPolicy
-     *   Ironflow\Auth\RBAC\Role  → Ironflow\Auth\Policies\RolePolicy
+     *   Marrow\Auth\RBAC\Role  → Marrow\Auth\Policies\RolePolicy
      */
     private function guessPolicy(string $modelClass): ?string
     {

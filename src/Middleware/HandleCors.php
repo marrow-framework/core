@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Config\Repository as Config;
-use Ironflow\Http\Request;
+use Marrow\Config\Repository as Config;
+use Marrow\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

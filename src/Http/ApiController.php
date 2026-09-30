@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Http;
+namespace Marrow\Http;
 
-use Ironflow\Http\Resources\JsonResource;
-use Ironflow\Http\Resources\ResourceCollection;
+use Marrow\Http\Resources\JsonResource;
+use Marrow\Http\Resources\ResourceCollection;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

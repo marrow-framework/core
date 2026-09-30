@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Http\Resources;
+namespace Marrow\Http\Resources;
 
-use Ironflow\Http\Request;
-use Ironflow\Http\Response;
+use Marrow\Http\Request;
+use Marrow\Http\Response;
 
 /**
  * Wraps an iterable of models/arrays and transforms each via a JsonResource class.

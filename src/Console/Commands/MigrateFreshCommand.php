@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
-use Ironflow\Database\Connection;
-use Ironflow\Database\Migrations\Migrator;
-use Ironflow\Module\ModuleManager;
+use Marrow\Console\Command;
+use Marrow\Database\Connection;
+use Marrow\Database\Migrations\Migrator;
+use Marrow\Module\ModuleManager;
 
 /**
  * Drops every table and re-runs all migrations from scratch, optionally

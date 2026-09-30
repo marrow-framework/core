@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Mail;
+namespace Marrow\Mail;
 
-use Ironflow\Application;
-use Ironflow\Template\Engine as TemplateEngine;
+use Marrow\Application;
+use Marrow\Template\Engine as TemplateEngine;
 use Symfony\Component\Mime\Email;
 
 /**

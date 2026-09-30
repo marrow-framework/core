@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Container;
-use Ironflow\Exceptions\ContainerException;
-use Ironflow\Tests\Unit\Fixtures\ServiceWithDep;
-use Ironflow\Tests\Unit\Fixtures\SimpleService;
+use Marrow\Container;
+use Marrow\Exceptions\ContainerException;
+use Marrow\Tests\Unit\Fixtures\ServiceWithDep;
+use Marrow\Tests\Unit\Fixtures\SimpleService;
 use stdClass;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
@@ -17,8 +17,8 @@ beforeEach(function () {
 });
 
 test('bind and make closure', function () {
-    $this->container->bind('greeting', fn () => 'Hello IronFlow');
-    expect($this->container->make('greeting'))->toBe('Hello IronFlow');
+    $this->container->bind('greeting', fn () => 'Hello Marrow');
+    expect($this->container->make('greeting'))->toBe('Hello Marrow');
 });
 
 test('singleton returns same instance', function () {

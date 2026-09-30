@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new model Factory class.
@@ -33,7 +33,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Database\\Factory;
+use Marrow\\Database\\Factory;
 
 class {$name} extends Factory
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Config;
+namespace Marrow\Config;
 
 /**
  * Configuration repository with dot-notation access.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Config\Repository;
+use Marrow\Config\Repository;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
@@ -13,8 +13,8 @@ beforeEach(function () {
 });
 
 test('set and get round-trip a top-level value', function () {
-    $this->config->set('app.name', 'IronFlow');
-    expect($this->config->get('app.name'))->toBe('IronFlow');
+    $this->config->set('app.name', 'Marrow');
+    expect($this->config->get('app.name'))->toBe('Marrow');
 });
 
 test('get returns the default for a missing key', function () {

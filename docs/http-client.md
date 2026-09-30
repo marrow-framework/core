@@ -1,6 +1,6 @@
 # HTTP Client
 
-`Ironflow\Http\HttpClient` is a fluent wrapper around `symfony/http-client`
+`Marrow\Http\HttpClient` is a fluent wrapper around `symfony/http-client`
 — never import Symfony's client directly in application code, inject
 `HttpClient` via the constructor instead.
 
@@ -9,7 +9,7 @@
 ```php
 class WeatherService
 {
-    public function __construct(private readonly \Ironflow\Http\HttpClient $http) {}
+    public function __construct(private readonly \Marrow\Http\HttpClient $http) {}
 
     public function forecast(string $city): array
     {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new FormRequest class for validated controller input.
@@ -70,7 +70,7 @@ declare(strict_types=1);
 
 namespace {$namespace};
 
-use Ironflow\Http\FormRequest;
+use Marrow\Http\FormRequest;
 
 class {$class} extends FormRequest
 {

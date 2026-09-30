@@ -2,7 +2,7 @@
 
 ## The Application kernel
 
-`Ironflow\Application` (`framework/src/Application.php`) is the single IoC
+`Marrow\Application` (`framework/src/Application.php`) is the single IoC
 kernel for both HTTP and console contexts. Constructing it:
 
 1. Stores itself as a process-wide singleton (`Application::getInstance()`).
@@ -50,7 +50,7 @@ needs a non-standard layout.
 
 ```php
 // bootstrap/app.php
-use Ironflow\Application;
+use Marrow\Application;
 return new Application(dirname(__DIR__));
 ```
 

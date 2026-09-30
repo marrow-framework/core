@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new Notification class.
@@ -36,7 +36,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Notifications\\Notification;
+use Marrow\\Notifications\\Notification;
 
 class {$name} extends Notification
 {
@@ -45,7 +45,7 @@ class {$name} extends Notification
         return ['mail', 'database'];
     }
 
-    public function toMail(object \$notifiable, \\Ironflow\\Mail\\Mailer \$mailer): \\Ironflow\\Mail\\PendingMail
+    public function toMail(object \$notifiable, \\Marrow\\Mail\\Mailer \$mailer): \\Marrow\\Mail\\PendingMail
     {
         return \$mailer->to(\$notifiable->email)
             ->subject('Notification')

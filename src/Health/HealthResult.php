@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Health;
+namespace Marrow\Health;
 
 /**
  * Result of a single health check.

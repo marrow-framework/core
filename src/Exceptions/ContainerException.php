@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Exceptions;
+namespace Marrow\Exceptions;
 
 use RuntimeException;
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth\Concerns;
+namespace Marrow\Auth\Concerns;
 
-use Ironflow\Application;
-use Ironflow\Auth\RBAC\Role;
-use Ironflow\Database\Connection;
+use Marrow\Application;
+use Marrow\Auth\RBAC\Role;
+use Marrow\Database\Connection;
 
 /**
  * HasRole — attach to a User model to enable role-based access.

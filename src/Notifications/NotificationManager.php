@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Notifications;
+namespace Marrow\Notifications;
 
-use Ironflow\Database\Connection;
-use Ironflow\Mail\Mailer;
-use Ironflow\Mail\PendingMail;
+use Marrow\Database\Connection;
+use Marrow\Mail\Mailer;
+use Marrow\Mail\PendingMail;
 
 /**
  * Dispatches notifications across their declared channels.

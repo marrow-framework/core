@@ -1,6 +1,6 @@
 # Notifications
 
-`Ironflow\Notifications\Notification` — deliver a single message across one
+`Marrow\Notifications\Notification` — deliver a single message across one
 or more channels without duplicating the "what happened" logic per channel.
 
 ## Defining a notification
@@ -8,9 +8,9 @@ or more channels without duplicating the "what happened" logic per channel.
 ```php
 namespace App\Notifications;
 
-use Ironflow\Mail\Mailer;
-use Ironflow\Mail\PendingMail;
-use Ironflow\Notifications\Notification;
+use Marrow\Mail\Mailer;
+use Marrow\Mail\PendingMail;
+use Marrow\Notifications\Notification;
 
 class InvoicePaid extends Notification
 {
@@ -43,7 +43,7 @@ either.
 ## Sending
 
 ```php
-$notifications = app(\Ironflow\Notifications\NotificationManager::class);
+$notifications = app(\Marrow\Notifications\NotificationManager::class);
 
 $notifications->send($user, new InvoicePaid($invoice));
 $notifications->send($users, new InvoicePaid($invoice));   // any iterable of notifiables

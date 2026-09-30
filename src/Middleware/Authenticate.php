@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Middleware;
+namespace Marrow\Middleware;
 
-use Ironflow\Auth\AuthManager;
-use Ironflow\Exceptions\HttpException;
-use Ironflow\Http\Request;
+use Marrow\Auth\AuthManager;
+use Marrow\Exceptions\HttpException;
+use Marrow\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

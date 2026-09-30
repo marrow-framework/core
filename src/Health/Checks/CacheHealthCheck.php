@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Health\Checks;
+namespace Marrow\Health\Checks;
 
-use Ironflow\Cache\CacheManager;
-use Ironflow\Health\HealthCheck;
-use Ironflow\Health\HealthResult;
+use Marrow\Cache\CacheManager;
+use Marrow\Health\HealthCheck;
+use Marrow\Health\HealthResult;
 
 /**
  * Verifies the cache can round-trip a value.

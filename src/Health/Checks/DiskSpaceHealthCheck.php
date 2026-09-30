@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Health\Checks;
+namespace Marrow\Health\Checks;
 
-use Ironflow\Health\HealthCheck;
-use Ironflow\Health\HealthResult;
+use Marrow\Health\HealthCheck;
+use Marrow\Health\HealthResult;
 
 /**
  * Warns/fails when free disk space on the storage path drops below thresholds.

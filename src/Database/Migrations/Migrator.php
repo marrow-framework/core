@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database\Migrations;
+namespace Marrow\Database\Migrations;
 
-use Ironflow\Database\Connection;
-use Ironflow\Database\Schema\Schema;
+use Marrow\Database\Connection;
+use Marrow\Database\Schema\Schema;
 
 /**
  * Discovers, runs, and rolls back migrations.

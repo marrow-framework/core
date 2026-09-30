@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit;
+namespace Marrow\Tests\Unit;
 
-use Ironflow\Database\Connection;
-use Ironflow\Queue\QueueManager;
-use Ironflow\Tests\Unit\Fixtures\TestQueueJob;
+use Marrow\Database\Connection;
+use Marrow\Queue\QueueManager;
+use Marrow\Tests\Unit\Fixtures\TestQueueJob;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //
@@ -56,7 +56,7 @@ test('a payload naming a non-Job class is rejected instead of being instantiated
 test('an unrelated class embedded in the payload is not instantiated (object-injection guard)', function () {
     // Simulate a tampered/forged payload naming a class that isn't a Job at
     // all — allowed_classes must reject it before it's ever constructed.
-    $forged = serialize(new \Ironflow\Tests\Unit\Fixtures\SimpleService());
+    $forged = serialize(new \Marrow\Tests\Unit\Fixtures\SimpleService());
 
     $this->conn->insert('jobs', [
         'queue' => 'default',

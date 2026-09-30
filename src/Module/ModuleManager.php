@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Module;
+namespace Marrow\Module;
 
-use Ironflow\Container;
-use Ironflow\Events\Dispatcher;
-use Ironflow\Module\Attributes\Module as ModuleAttr;
-use Ironflow\Exceptions\ModuleException;
+use Marrow\Container;
+use Marrow\Events\Dispatcher;
+use Marrow\Module\Attributes\Module as ModuleAttr;
+use Marrow\Exceptions\ModuleException;
 use ReflectionClass;
 
 /**

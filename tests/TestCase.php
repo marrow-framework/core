@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests;
+namespace Marrow\Tests;
 
-use Ironflow\Http\Request as IronflowRequest;
+use Marrow\Http\Request as MarrowRequest;
 use PHPUnit\Framework\TestCase as PhpUnitTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Base TestCase for the IronFlow framework test suite.
+ * Base TestCase for the Marrow framework test suite.
  *
  * Provides HTTP simulation helpers for integration-style tests. Unit tests
  * typically ignore these and test classes/services in isolation.
@@ -29,27 +29,27 @@ abstract class TestCase extends PhpUnitTestCase
 
     public function get(string $uri, array $headers = []): Response
     {
-        return $this->dispatch(IronflowRequest::create($uri, 'GET'), $headers);
+        return $this->dispatch(MarrowRequest::create($uri, 'GET'), $headers);
     }
 
     public function post(string $uri, array $data = [], array $headers = []): Response
     {
-        return $this->dispatch(IronflowRequest::create($uri, 'POST', $data), $headers);
+        return $this->dispatch(MarrowRequest::create($uri, 'POST', $data), $headers);
     }
 
     public function put(string $uri, array $data = [], array $headers = []): Response
     {
-        return $this->dispatch(IronflowRequest::create($uri, 'PUT', $data), $headers);
+        return $this->dispatch(MarrowRequest::create($uri, 'PUT', $data), $headers);
     }
 
     public function patch(string $uri, array $data = [], array $headers = []): Response
     {
-        return $this->dispatch(IronflowRequest::create($uri, 'PATCH', $data), $headers);
+        return $this->dispatch(MarrowRequest::create($uri, 'PATCH', $data), $headers);
     }
 
     public function delete(string $uri, array $headers = []): Response
     {
-        return $this->dispatch(IronflowRequest::create($uri, 'DELETE'), $headers);
+        return $this->dispatch(MarrowRequest::create($uri, 'DELETE'), $headers);
     }
 
     // ── Response assertions ──────────────────────────────────────────
@@ -77,14 +77,14 @@ abstract class TestCase extends PhpUnitTestCase
 
     // ── Dispatcher ───────────────────────────────────────────────────
 
-    protected function dispatch(IronflowRequest $request, array $headers = []): Response
+    protected function dispatch(MarrowRequest $request, array $headers = []): Response
     {
         foreach ($headers as $name => $value) {
             $request->headers->set($name, $value);
         }
 
-        $app    = \Ironflow\Application::getInstance();
-        $kernel = $app->getContainer()->make(\Ironflow\Http\Kernel::class);
+        $app    = \Marrow\Application::getInstance();
+        $kernel = $app->getContainer()->make(\Marrow\Http\Kernel::class);
         return $kernel->handle($request);
     }
 }

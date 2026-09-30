@@ -16,7 +16,7 @@ Les versions antérieures à `1.0.0` ne reçoivent aucun correctif de sécurité
 
 Nous utilisons les **GitHub Security Advisories** pour gérer les rapports de façon confidentielle :
 
-1. Rendez-vous sur [Security → Report a vulnerability](https://github.com/ironflow-framework/framework/security/advisories/new)
+1. Rendez-vous sur [Security → Report a vulnerability](https://github.com/marrow/framework/security/advisories/new)
 2. Décrivez la vulnérabilité avec autant de détails que possible
 3. Joignez un proof-of-concept si disponible
 
@@ -75,7 +75,7 @@ Le rapporteur est crédité dans le GitHub Security Advisory et dans le `CHANGEL
 
 ## Bonnes pratiques pour les utilisateurs
 
-- Maintenez votre dépendance `ironflow-framework/framework` à jour
+- Maintenez votre dépendance `marrow/framework` à jour
 - Activez `APP_DEBUG=false` en production
 - Utilisez `php forge key:generate` pour regénérer `APP_KEY` en cas de compromission suspectée
 - Ne committez jamais le fichier `.env`

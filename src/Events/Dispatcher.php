@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Events;
+namespace Marrow\Events;
 
-use Ironflow\Container;
+use Marrow\Container;
 
 /**
  * Event Dispatcher — decoupled pub/sub between modules.

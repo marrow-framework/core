@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
-use Ironflow\Container;
-use Ironflow\Database\Connection;
-use Ironflow\Module\ModuleManager;
+use Marrow\Console\Command;
+use Marrow\Container;
+use Marrow\Database\Connection;
+use Marrow\Module\ModuleManager;
 
 /**
  * Display framework and environment information.
@@ -15,7 +15,7 @@ use Ironflow\Module\ModuleManager;
 class AboutCommand extends Command
 {
     protected string $signature   = 'about';
-    protected string $description = 'Display information about the IronFlow application';
+    protected string $description = 'Display information about the Marrow application';
 
     public function __construct(private readonly Container $container)
     {
@@ -27,14 +27,14 @@ class AboutCommand extends Command
         $version = $_ENV['APP_VERSION'] ?? '0.2.0';
 
         $this->newLine();
-        $this->output->writeln("   <options=bold;fg=blue>INFO</>  IronFlow <options=bold>v{$version}</> — Application Information");
+        $this->output->writeln("   <options=bold;fg=blue>INFO</>  Marrow <options=bold>v{$version}</> — Application Information");
         $this->newLine();
 
         // ── Environment ──────────────────────────────────────────────
         $this->output->writeln('   <options=bold>Environment</>');
         $this->twoColumnDetail('   PHP',       PHP_VERSION);
         $this->twoColumnDetail('   Framework', $version);
-        $this->twoColumnDetail('   App',       $_ENV['APP_NAME'] ?? 'IronFlow');
+        $this->twoColumnDetail('   App',       $_ENV['APP_NAME'] ?? 'Marrow');
         $this->twoColumnDetail('   Env',       $_ENV['APP_ENV'] ?? 'production');
         $debug = ($_ENV['APP_DEBUG'] ?? 'false') === 'true';
         $this->twoColumnDetail('   Debug', $debug ? '<fg=yellow>enabled</>' : '<fg=gray>disabled</>');

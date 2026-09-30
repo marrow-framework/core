@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a view Component class alongside its Twig template.
@@ -79,7 +79,7 @@ declare(strict_types=1);
 
 namespace {$namespace};
 
-use Ironflow\Template\Component;
+use Marrow\Template\Component;
 
 class {$name}Component extends Component
 {

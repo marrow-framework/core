@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new Mailable class.
@@ -36,7 +36,7 @@ declare(strict_types=1);
 
 namespace {$ns};
 
-use Ironflow\\Mail\\Mailable;
+use Marrow\\Mail\\Mailable;
 use Symfony\\Component\\Mime\\Email;
 
 class {$name} extends Mailable

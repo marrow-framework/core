@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth\Concerns;
+namespace Marrow\Auth\Concerns;
 
-use Ironflow\Application;
-use Ironflow\Auth\Gate;
-use Ironflow\Auth\RBAC\Permission;
-use Ironflow\Database\Connection;
+use Marrow\Application;
+use Marrow\Auth\Gate;
+use Marrow\Auth\RBAC\Permission;
+use Marrow\Database\Connection;
 
 /**
  * HasPermission — permission checking via roles and the Gate.

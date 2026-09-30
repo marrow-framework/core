@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Database;
+namespace Marrow\Database;
 
-use Ironflow\Support\Collection;
-use Ironflow\Support\Paginator;
+use Marrow\Support\Collection;
+use Marrow\Support\Paginator;
 
 /**
  * Fluent QueryBuilder over Doctrine DBAL.

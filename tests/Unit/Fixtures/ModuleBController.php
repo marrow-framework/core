@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Tests\Unit\Fixtures;
+namespace Marrow\Tests\Unit\Fixtures;
 
 /** Simulates a Router-resolved controller: constructed with no explicit
  *  callerModule, relying purely on its own bindingOwners entry to seed the

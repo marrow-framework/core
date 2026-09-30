@@ -1,6 +1,6 @@
 # Queues & Jobs
 
-A single, database-backed queue (`Ironflow\Queue\QueueManager`) — no Redis
+A single, database-backed queue (`Marrow\Queue\QueueManager`) — no Redis
 or external broker required to get started.
 
 ## Defining a job
@@ -8,7 +8,7 @@ or external broker required to get started.
 ```php
 namespace App\Jobs;
 
-use Ironflow\Queue\Job;
+use Marrow\Queue\Job;
 
 class SendWelcomeEmail extends Job
 {
@@ -23,7 +23,7 @@ class SendWelcomeEmail extends Job
         // Jobs are unserialized from the DB, not container-resolved — no
         // constructor injection here. Resolve services explicitly:
         $user = User::find($this->userId);
-        app(\Ironflow\Mail\Mailer::class)->send(new WelcomeMail($user));
+        app(\Marrow\Mail\Mailer::class)->send(new WelcomeMail($user));
     }
 
     public function failed(\Throwable $e): void
@@ -41,8 +41,8 @@ payload should stay small and stable across deploys.
 
 ```php
 dispatch(new SendWelcomeEmail($user->id));                     // global helper
-app(\Ironflow\Queue\QueueManager::class)->push(new SendWelcomeEmail($user->id));
-app(\Ironflow\Queue\QueueManager::class)->later(60, new SendWelcomeEmail($user->id)); // delayed 60s
+app(\Marrow\Queue\QueueManager::class)->push(new SendWelcomeEmail($user->id));
+app(\Marrow\Queue\QueueManager::class)->later(60, new SendWelcomeEmail($user->id)); // delayed 60s
 
 $job = new SendWelcomeEmail($user->id);
 $job->onQueue('emails');

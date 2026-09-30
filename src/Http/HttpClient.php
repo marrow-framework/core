@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Http;
+namespace Marrow\Http;
 
 use Symfony\Component\HttpClient\HttpClient as SymfonyHttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Auth\Concerns;
+namespace Marrow\Auth\Concerns;
 
 /**
  * HasTwoFactor — TOTP-based two-factor authentication (RFC 6238).
@@ -193,7 +193,7 @@ trait HasTwoFactor
     // ── Secret encryption (AES-256-GCM, authenticated) ────────────────
 
     /**
-     * Delegates to Ironflow\Support\Crypto (shared AES-256-GCM helper, also
+     * Delegates to Marrow\Support\Crypto (shared AES-256-GCM helper, also
      * used by Model's `encrypted` cast). A random IV per call plus the GCM
      * auth tag are stored alongside the ciphertext, so tampering is
      * detected on decrypt (decryptSecret() returns '' rather than garbage
@@ -201,11 +201,11 @@ trait HasTwoFactor
      */
     private function encryptSecret(string $secret): string
     {
-        return \Ironflow\Support\Crypto::encrypt($secret);
+        return \Marrow\Support\Crypto::encrypt($secret);
     }
 
     private function decryptSecret(string $encrypted): string
     {
-        return \Ironflow\Support\Crypto::decrypt($encrypted);
+        return \Marrow\Support\Crypto::decrypt($encrypted);
     }
 }

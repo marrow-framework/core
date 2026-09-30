@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Application;
-use Ironflow\Console\Command;
+use Marrow\Application;
+use Marrow\Console\Command;
 
 /**
- * Interactive PHP REPL for IronFlow.
+ * Interactive PHP REPL for Marrow.
  * Uses PsySH when available (composer require psy/psysh --dev),
  * otherwise falls back to a minimal readline eval loop.
  */
@@ -43,7 +43,7 @@ class TinkerCommand extends Command
     private function runFallbackRepl(Application $app): int
     {
         $this->newLine();
-        $this->output->writeln('   <options=bold;fg=blue>INFO</>  <options=bold>IronFlow Tinker</> — Interactive REPL');
+        $this->output->writeln('   <options=bold;fg=blue>INFO</>  <options=bold>Marrow Tinker</> — Interactive REPL');
         $this->output->writeln('   <fg=gray>→</>  Install <fg=yellow>psy/psysh</> for a richer experience.');
         $this->output->writeln('   <fg=gray>→</>  Type <fg=yellow>exit</> or press <options=bold>Ctrl+D</> to quit.');
         $this->newLine();

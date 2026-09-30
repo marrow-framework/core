@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Console\Commands;
+namespace Marrow\Console\Commands;
 
-use Ironflow\Console\Command;
+use Marrow\Console\Command;
 
 /**
  * Scaffolds a new API Resource class (or a ResourceCollection with
@@ -76,8 +76,8 @@ declare(strict_types=1);
 
 namespace {$namespace};
 
-use Ironflow\Http\Request;
-use Ironflow\Http\Resources\JsonResource;
+use Marrow\Http\Request;
+use Marrow\Http\Resources\JsonResource;
 
 class {$class} extends JsonResource
 {
@@ -101,8 +101,8 @@ declare(strict_types=1);
 
 namespace {$namespace};
 
-use Ironflow\Http\Request;
-use Ironflow\Http\Resources\JsonResource;
+use Marrow\Http\Request;
+use Marrow\Http\Resources\JsonResource;
 
 class {$class} extends JsonResource
 {

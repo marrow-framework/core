@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Health;
+namespace Marrow\Health;
 
 /**
  * Aggregates health checks and produces an overall report.

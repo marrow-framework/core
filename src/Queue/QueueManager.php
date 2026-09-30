@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ironflow\Queue;
+namespace Marrow\Queue;
 
-use Ironflow\Database\Connection;
+use Marrow\Database\Connection;
 
 /**
  * Database-backed job queue.
