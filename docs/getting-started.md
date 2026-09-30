@@ -135,7 +135,7 @@ independent, self-documented Composer package, not something bundled in:
 ```bash
 composer require marrow/form-builder        # Django-style backend forms
 composer require --dev marrow/anvil          # Docker Compose dev environment
-composer require --dev marrow/compass         # generates AGENTS.md for AI coding agents
+composer require --dev marrow/ai-context     # generates AGENTS.md for AI coding agents
 ```
 
 All three register themselves automatically on install (auto-discovery — see
