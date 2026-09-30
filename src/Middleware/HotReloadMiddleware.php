@@ -106,7 +106,7 @@ class HotReloadMiddleware
         }
 
         // Also watch framework src when running from the monorepo.
-        $frameworkSrc = $basePath . '/../framework/src';
+        $frameworkSrc = $basePath . '/../core/src';
         if (is_dir($frameworkSrc)) {
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($frameworkSrc, \FilesystemIterator::SKIP_DOTS)

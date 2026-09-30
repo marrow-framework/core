@@ -59,7 +59,7 @@ composer install
 php forge serve
 ```
 
-Le skeleton pointe vers `../framework` via un repository `path` dans son `composer.json` — aucune publication n'est nécessaire pour tester end-to-end.
+Le skeleton pointe vers `../core` via un repository `path` dans son `composer.json` — aucune publication n'est nécessaire pour tester end-to-end.
 
 ---
 
@@ -273,7 +273,7 @@ Aucun / [description si applicable]
 
 ## Signaler un bug
 
-Avant d'ouvrir une issue, vérifiez que le bug n'est pas déjà [signalé](https://github.com/marrow/framework/issues).
+Avant d'ouvrir une issue, vérifiez que le bug n'est pas déjà [signalé](https://github.com/marrow-framework/core/issues).
 
 Utilisez le template **Bug Report** et incluez :
 

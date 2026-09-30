@@ -1,6 +1,6 @@
 # Service Container
 
-`Marrow\Container` (`framework/src/Container.php`) is the IoC container
+`Marrow\Container` (`core/src/Container.php`) is the IoC container
 backing everything else in the framework: controllers, middleware, console
 commands, and module `providers` are all resolved through it.
 

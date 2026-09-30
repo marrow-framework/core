@@ -16,7 +16,7 @@ Les versions antérieures à `1.0.0` ne reçoivent aucun correctif de sécurité
 
 Nous utilisons les **GitHub Security Advisories** pour gérer les rapports de façon confidentielle :
 
-1. Rendez-vous sur [Security → Report a vulnerability](https://github.com/marrow/framework/security/advisories/new)
+1. Rendez-vous sur [Security → Report a vulnerability](https://github.com/marrow-framework/core/security/advisories/new)
 2. Décrivez la vulnérabilité avec autant de détails que possible
 3. Joignez un proof-of-concept si disponible
 
