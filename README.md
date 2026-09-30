@@ -2,7 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/marrow-framework/.github/main/marrow-logo-mark.svg" alt="Marrow" width="120">
 
-![Marrow](https://raw.githubusercontent.com/marrow-framework/.github/main/marrow-logo-mark.svg)
+# Marrow Framework
 
 The technical core of Marrow: dependency container, HMVC modules, HTTP routing, CLI, ORM, security, and application services.
 
