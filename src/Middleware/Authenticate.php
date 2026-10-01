@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Marrow\Middleware;
 
+use Marrow\Attributes\Inject;
 use Marrow\Auth\AuthManager;
 use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
@@ -16,8 +17,16 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Authenticate
 {
-    public function __construct(private readonly AuthManager $auth)
-    {
+    /**
+     * $loginRedirect is nullable (rather than defaulting straight to
+     * '/login') so a direct `new Authenticate($auth)` — tests, mainly —
+     * doesn't require a booted Application/config just to get the same
+     * default the container-resolved path would end up with anyway.
+     */
+    public function __construct(
+        private readonly AuthManager $auth,
+        #[Inject('config.auth.redirects.login')] private readonly ?string $loginRedirect = null,
+    ) {
     }
 
     /** @throws HttpException 401 for a JSON request. */
@@ -36,7 +45,7 @@ class Authenticate
             // redirected anywhere. RedirectIfAuthenticated (the `guest`
             // middleware) already avoids this by returning a RedirectResponse
             // directly instead of throwing; this mirrors that.
-            return new RedirectResponse((string) config('auth.redirects.login', '/login'));
+            return new RedirectResponse($this->loginRedirect ?? '/login');
         }
 
         return $next($request);
