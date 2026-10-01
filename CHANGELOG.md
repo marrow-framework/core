@@ -10,6 +10,12 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [2.3.1] - 2026-10-01
+
+### Fixed
+
+- **`Template\Component::__construct()` could silently corrupt or crash on perfectly normal component usage** — it assigned every prop key matching `property_exists()` via a bare `$this->$key = $value`, which broke in two ways once a real component was actually exercised end-to-end (nothing shipped with core itself had used `Component` before `marrow/ui` did): (1) a value captured via Twig's own `{% set x %}...{% endset %}` — the documented way to pass multi-line HTML into a `slot`-shaped prop — is a `Twig\Markup` object, not a plain string, and PHP does not implicitly coerce an object (Stringable or not) into a typed `string` property, so this threw a `TypeError` on exactly the pattern the feature's own docs showed; (2) a prop key matching the base class's own *static* `$name` property (e.g. a component with its own `name` prop, for an HTML `name=""` attribute) attempted a static write through an instance, which PHP warns about and which didn't do what was intended anyway. The constructor now reflects each target property first: a `Stringable` value assigned to a `string`-typed property is coerced automatically, and static or non-public properties are skipped rather than blindly written through.
+
 ## [2.3.0] - 2026-10-01
 
 ### Added
