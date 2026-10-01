@@ -36,6 +36,31 @@ Argon2id `password_verify()` — even when no matching row is found, against
 a fixed dummy hash — so response time never leaks whether an email/username
 exists (a classic account-enumeration side channel).
 
+`attempt()` also locks out an identifier (email/username) after repeated
+**failed** attempts, independently of the `throttle:` route middleware:
+
+```php
+'guards' => [
+    'session' => [
+        // ...
+        'throttle' => ['max_attempts' => 5, 'decay_seconds' => 60], // defaults shown
+    ],
+],
+```
+
+This is keyed by the login identifier alone, not the IP — a route-level
+`throttle:` middleware is keyed by IP (or user id once authenticated) and
+would never catch a single account being credential-stuffed from many
+different addresses. Only failed attempts increment the counter, so a user
+who always types the right password is never throttled; a successful
+`attempt()` clears it. On lockout, `attempt()` throws `HttpException(429)`
+with a `Retry-After` header rather than returning `false`, so the login
+controller can distinguish "wrong password" from "try again later". Omitting
+`throttle` from config still applies the 5/60 defaults shown above; the only
+way to disable lockout entirely is to construct `SessionGuard` without a
+`RateLimiter` (e.g. in tests), which `AuthManager` never does when one can
+be resolved from the container.
+
 ### `jwt` guard
 
 Stateless — reads the `Authorization: Bearer <token>` header. Requires
