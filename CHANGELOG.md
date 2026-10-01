@@ -10,13 +10,20 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
-## [2.3.0] - 2026-09-25
+## [2.3.0] - 2026-10-01
 
 ### Added
 
 - **`#[Route]` attribute routing** (`Marrow\Routing\Attributes\Route`) — an alternative to writing `$router->get(...)` by hand for each controller action: `#[Route('/{id}', method: 'POST', name: 'posts.update', middleware: 'auth')]` on a method, registered via `Router::controller(PostController::class)`. A class-level `#[Route('/posts', middleware: 'web')]` supplies a URI prefix and middleware shared by every attributed method. Still called explicitly from a module's `routes.php` like any other route — this changes where a route's metadata lives, not Marrow's routing-is-module-only convention — and honors the current `group()` prefix/middleware since it goes through the same `addRoute()` as every other registration method.
 - **`#[Table]`/`#[Column]` model attributes** (`Marrow\Database\Attributes\{Table,Column}`) — an alternative to declaring `$table`/`$fillable`/`$hidden`/`$casts` arrays: `#[Table('posts')]` plus one repeatable `#[Column('title')]` per column on the class. Deliberately class-level, not property-level: `Model`'s fields are virtual (stored in an internal array, read/written through `__get()`/`__set()`) — a real declared property with the same name would shadow those magic methods and silently break attribute access, verified the hard way while building this (a `public string $title` property on the model bypasses `__get()`/`__set()` entirely, so nothing was actually reading from the intended array-backed storage). Merges with, rather than replaces, an explicit array declaration on the model: `$table`/`$fillable` only apply from attributes if the property was left empty, `$hidden` merges, `$casts` merges with the explicit array winning on a key collision.
 - **Validation attributes on `FormRequest`** (`Marrow\Validation\Attributes\{Required,Nullable,Email,StringType,IntegerType,Min,Max,Confirmed,In,Rule}`) — an alternative to hand-writing the `rules()` array: `#[Required, StringType, Max(255)] public string $title;` then `rules(): array { return $this->rulesFromAttributes(); }`. Multiple attributes on one property combine into a single pipe rule in declaration order. `#[Rule('...')]` is a raw escape hatch for any rule without its own dedicated attribute. Unlike the `Model` attributes above, these sit on real declared properties safely — `FormRequest` has no `__get()`/`__set()` for a property to shadow, since `rulesFromAttributes()` only ever reflects the class definition and never reads the properties' actual values.
+- **Protection anti brute-force dans `SessionGuard::attempt()`** (`config/auth.php → guards.session.throttle`, défauts `max_attempts: 5` / `decay_seconds: 60`) — verrouille un identifiant de connexion (email/username) après un nombre configurable d'échecs, indépendamment de tout middleware `throttle:` posé sur la route de login. Volontairement clé sur l'identifiant seul plutôt que sur l'IP : un middleware `throttle:` classique est clé par IP (ou par utilisateur une fois authentifié), ce qui ne protège pas un compte précis attaqué par credential stuffing depuis de nombreuses adresses différentes. Seuls les échecs incrémentent le compteur — un mot de passe correct n'est jamais throttled — et un login réussi le réinitialise. En cas de verrouillage, `attempt()` lève désormais une `HttpException(429)` avec un en-tête `Retry-After`, plutôt que de retourner `false` comme pour un simple mot de passe erroné, pour que le contrôleur de login puisse distinguer les deux cas. `AuthManager::createGuard()` résout le `RateLimiter` existant (déjà utilisé par `ThrottleRequests`, jusqu'ici jamais câblé à l'authentification elle-même) depuis le conteneur ; `SessionGuard` reste utilisable sans lui (nullable, défaut `null`) pour les tests ou tout contexte sans backend de cache.
+- **`config/auth.php → redirects.login`** — chemin vers lequel `Authenticate` (middleware `auth`) redirige désormais une requête web non authentifiée ; voir le correctif ci-dessous.
+
+### Fixed
+
+- **`HttpException::withHeaders()` n'avait aucun effet** — `Exceptions\Handler::render()` construisait dans chaque branche (JSON / debug / page d'erreur production) une réponse entièrement neuve sans jamais relire `$e->getHeaders()`, qui étaient donc posés puis silencieusement perdus. Affectait tout code public s'appuyant sur cette API documentée, notamment le `Retry-After`/`X-RateLimit-*` de `ThrottleRequests` sur un 429 (déjà en usage) et celui du nouveau verrou anti brute-force de `SessionGuard` ci-dessus. `render()` reporte désormais ces en-têtes sur la réponse finale, quelle que soit la branche qui l'a produite.
+- **Le middleware `Authenticate` (`auth`) ne redirigeait en réalité jamais vers la page de login** — une requête web non authentifiée levait `HttpException(302, '')`, mais `Handler` n'a pas de vue pour le statut 302 et (avant le correctif ci-dessus) ne reportait de toute façon jamais d'en-tête `Location` sur la réponse construite : le navigateur recevait une page d'erreur sans redirection réelle. `Authenticate` retourne maintenant une vraie `RedirectResponse` vers `config('auth.redirects.login', '/login')`, exactement comme `RedirectIfAuthenticated` (middleware `guest`) le fait déjà pour le cas inverse.
 
 ## [2.2.0] - 2026-09-23
 
@@ -323,7 +330,7 @@ Première version publique d'Marrow. Le noyau est complet et testé (91 assertio
 ---
 
 [Unreleased]: https://github.com/marrow-framework/core/compare/v2.3.0...HEAD
-[2.3.0]: https://github.com/marrow-framework/core/compare/v2.2.0...v2.3.0
+[2.3.0]: https://github.com/marrow-framework/core/compare/v2.2.1...v2.3.0
 [2.2.0]: https://github.com/marrow-framework/core/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/marrow-framework/core/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/marrow-framework/core/compare/v2.0.0...v2.1.0

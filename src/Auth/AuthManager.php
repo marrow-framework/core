@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Marrow\Auth;
 
 use Marrow\Database\Connection;
+use Marrow\RateLimiting\RateLimiter;
 use Marrow\Session\SessionManager;
 use Marrow\Auth\Gate;
 
@@ -93,10 +94,24 @@ class AuthManager
         $guardConfig = $this->config['guards'][$name] ?? [];
 
         return match ($guardConfig['driver'] ?? $name) {
-            'session' => new SessionGuard($this->session, $this->db, $guardConfig),
+            'session' => new SessionGuard($this->session, $this->db, $guardConfig, $this->resolveRateLimiter()),
             'jwt' => $this->createJwtGuard($guardConfig),
             default => throw new \InvalidArgumentException("Unknown auth guard driver [{$name}]."),
         };
+    }
+
+    /**
+     * Best-effort: a missing cache backend must never make login itself
+     * fail — it just means attempt() runs without lockout protection,
+     * same as passing no RateLimiter to SessionGuard directly.
+     */
+    private function resolveRateLimiter(): ?RateLimiter
+    {
+        try {
+            return \Marrow\Application::getInstance()->getContainer()->make(RateLimiter::class);
+        } catch (\Throwable) {
+            return null;
+        }
     }
 
     private function createJwtGuard(array $guardConfig): JwtGuard
