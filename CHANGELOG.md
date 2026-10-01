@@ -10,7 +10,7 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
-Contenu déjà fusionné sur `develop` mais pas encore tagué/publié comme release GitHub — reste sous `[Unreleased]` tant qu'aucun tag `vX.Y.Z` correspondant n'existe sur les [releases GitHub du core](https://github.com/marrow-framework/core/releases) (dernière release réelle à ce jour : `v2.2.1`).
+## [2.3.0] - 2026-10-01
 
 ### Added
 
@@ -329,7 +329,8 @@ Première version publique d'Marrow. Le noyau est complet et testé (91 assertio
 
 ---
 
-[Unreleased]: https://github.com/marrow-framework/core/compare/v2.2.1...HEAD
+[Unreleased]: https://github.com/marrow-framework/core/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/marrow-framework/core/compare/v2.2.1...v2.3.0
 [2.2.0]: https://github.com/marrow-framework/core/compare/v2.1.1...v2.2.0
 [2.1.1]: https://github.com/marrow-framework/core/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/marrow-framework/core/compare/v2.0.0...v2.1.0
