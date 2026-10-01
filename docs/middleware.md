@@ -96,7 +96,7 @@ $router->get('/admin', Controller::class . '@index')->middleware(['web', 'auth']
 
 | Class | What it does |
 |---|---|
-| `Authenticate` | 401 (JSON) or 302 if the given guard (default `session`) has no authenticated user |
+| `Authenticate` | 401 (JSON) or a real redirect to `config('auth.redirects.login', '/login')` if the given guard (default `session`) has no authenticated user |
 | `RedirectIfAuthenticated` | Inverse — redirects to `/` if already authenticated (guest-only routes) |
 | `HandleCors` | `Access-Control-*` headers from `config/cors.php`; answers `OPTIONS` preflight directly |
 | `VerifyCsrfToken` | 419 on state-changing requests missing/mismatching the CSRF token; exempt via `config/shield.php → csrf_except` |

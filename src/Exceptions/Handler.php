@@ -40,15 +40,25 @@ class Handler
 
         $this->logException($request, $e, $status);
 
-        if ($request->wantsJson()) {
-            return $this->renderJson($e, $status);
+        $response = match (true) {
+            $request->wantsJson() => $this->renderJson($e, $status),
+            $this->debug          => $this->renderDebugPage($request, $e, $status),
+            default               => $this->renderErrorPage($e, $status),
+        };
+
+        // HttpException::withHeaders() (Retry-After/X-RateLimit-* on a 429 from
+        // ThrottleRequests or SessionGuard's login lockout, a custom Location,
+        // ...) previously had no effect at all: every branch above builds a
+        // brand-new Response/JsonResponse from scratch, none of which ever
+        // read $e->getHeaders() — the headers were stored on the exception
+        // and then silently discarded.
+        if ($e instanceof HttpException) {
+            foreach ($e->getHeaders() as $name => $value) {
+                $response->headers->set($name, $value);
+            }
         }
 
-        if ($this->debug) {
-            return $this->renderDebugPage($request, $e, $status);
-        }
-
-        return $this->renderErrorPage($e, $status);
+        return $response;
     }
 
     // ── Validation ───────────────────────────────────────────────────
