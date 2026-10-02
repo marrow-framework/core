@@ -58,6 +58,10 @@ Exempt specific paths (webhooks, bearer-token APIs) via `fnmatch` patterns:
 'csrf_except' => ['webhooks/*', 'api/*'],
 ```
 
+A webhook route exempted from CSRF this way should still verify its own
+signature — see [External Service Integrations](integrations.md) for the
+`webhook` middleware / `Http\Webhook\WebhookSignature`.
+
 `SessionManager::csrfToken()` throws if called before `StartSession` has
 run — a silent empty-string fallback there would let an empty submitted
 `_token` pass `hash_equals('', '')`, a real bypass. Make sure `session`
