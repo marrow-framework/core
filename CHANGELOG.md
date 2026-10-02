@@ -10,6 +10,16 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-10-02
+
+### Added
+
+- **Primitives pour l'intégration de services externes** (paiement, API tierces, webhooks) — le socle qui manquait avant de construire un package dédié (type `marrow/billing`) : voir `docs/integrations.md`.
+  - `Http\Webhook\WebhookSignature` — vérification HMAC générique d'un webhook entrant, sans dépendre d'un fournisseur précis : un en-tête à valeur unique, éventuellement préfixé par son algorithme (`sha256=...`, convention GitHub), ou un en-tête horodaté `t=...,v1=...` (convention Stripe) avec fenêtre de tolérance anti-rejeu.
+  - Middleware `webhook` (`Middleware\VerifyWebhookSignature`, alias déclaré dans `config/middleware.php`) — `->middleware('webhook:stripe')` lit `config('services.stripe')` (`webhook_secret`/`webhook_header`/`webhook_timestamped`/`webhook_tolerance`) et répond `400` si la signature ne correspond pas. Le paramètre de route est une clé de config, jamais un secret littéral.
+  - `Support\ServiceIntegration` — classe de base pour représenter un service externe comme une unique classe liée au conteneur : lit son propre bloc `config('services.<key>')`, expose un `HttpClient` pré-configuré (`base_uri` + jeton `Bearer`) via `http()`, et vérifie ses propres webhooks via `verifyWebhook()`. Ne remplace pas le mécanisme de binding existant (`#[Module(providers: [...])]`) — comble l'absence de convention sur *la forme* d'un service externe une fois lié.
+  - `config/services.php` (skeleton) documente désormais cette convention (`base_uri`, `secret`, `webhook_secret`, ...) dans son exemple commenté.
+
 ## [2.3.1] - 2026-10-01
 
 ### Fixed

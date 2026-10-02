@@ -87,3 +87,7 @@ Read by `Application::bindCoreServices()` to build the shared `HttpClient`
 instance (`HttpClient::create($config->get('services.http', []))`), so
 every injected `HttpClient` starts from these defaults before any
 per-call fluent configuration is applied.
+
+Wrapping a specific third-party service (credentials, base URI, its own
+webhook verification) around this client? See
+[External Service Integrations](integrations.md) for `Support\ServiceIntegration`.
