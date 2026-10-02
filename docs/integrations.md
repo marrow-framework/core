@@ -49,7 +49,9 @@ class StripeIntegration extends ServiceIntegration
 
     public function handleWebhook(Request $request): void
     {
-        if (!$this->verifyWebhook($request, toleranceSeconds: 300)) {
+        // Reads 'webhook_header'/'webhook_timestamped'/'webhook_tolerance'
+        // straight from config('services.stripe') — no need to repeat them here.
+        if (!$this->verifyWebhook($request)) {
             abort(400, 'Invalid Stripe signature.');
         }
         // ... process $request->getContent()
