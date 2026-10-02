@@ -31,8 +31,28 @@ class DbSeedCommand extends Command
             return self::FAILURE;
         }
 
-        $seeder = $this->container->make($class);
-        $seeder->run();
+        try {
+            $seeder = $this->container->make($class);
+            $seeder->run();
+        } catch (\Throwable $e) {
+            // fakerphp/faker is a dev-only dependency (Database\Factory::fake())
+            // — unlike `tinker`'s psy/psysh, there's no earlier point to catch
+            // this at (the seeder itself is only resolvable/runnable here), so
+            // a missing-class \Error from it needs its own friendly message
+            // rather than surfacing as a raw stack trace.
+            if (str_contains($e->getMessage(), 'Faker\\')) {
+                $this->error(
+                    "Seeder [{$class}] uses fake data (Database\\Factory::fake()), " .
+                    "but fakerphp/faker isn't installed — it's a dev-only dependency. " .
+                    "Run: composer require --dev fakerphp/faker"
+                );
+                return self::FAILURE;
+            }
+
+            $this->error("Seeder [{$class}] failed: {$e->getMessage()}");
+            return self::FAILURE;
+        }
+
         $this->success("Seeded [{$class}]");
         return self::SUCCESS;
     }
