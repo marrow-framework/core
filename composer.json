@@ -27,11 +27,9 @@
     "require": {
         "php": ">=8.2",
         "doctrine/dbal": "^4.4",
-        "fakerphp/faker": "^1.23",
         "firebase/php-jwt": "^7.0",
         "league/flysystem": "^3.29",
         "monolog/monolog": "^3.10",
-        "psy/psysh": "^0.12.23",
         "symfony/cache": "^7.0",
         "symfony/console": "^7.0",
         "symfony/http-client": "^7.0",
@@ -44,15 +42,19 @@
         "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
+        "fakerphp/faker": "^1.23",
         "league/flysystem-aws-s3-v3": "^3.29",
         "pestphp/pest": "^3.8",
         "phpstan/phpstan": "^2.2",
-        "phpunit/phpunit": "^11.0"
+        "phpunit/phpunit": "^11.0",
+        "psy/psysh": "^0.12.23"
     },
     "suggest": {
         "ext-apcu": "Faster in-memory cache and rate limiting",
+        "fakerphp/faker": "Required by Model::factory()/db:seed when a seeder generates fake data — dev/CI only, not needed in production",
         "league/flysystem-aws-s3-v3": "S3 filesystem disk support",
-        "predis/predis": "Redis cache and queue backend"
+        "predis/predis": "Redis cache and queue backend",
+        "psy/psysh": "Powers the `tinker` REPL command — dev only, not needed in production"
     },
     "autoload": {
         "psr-4": {
