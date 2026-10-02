@@ -94,21 +94,28 @@ abstract class ServiceIntegration
 
     /**
      * Verifies an inbound webhook request against this integration's own
-     * 'webhook_secret' config entry. Pass $toleranceSeconds > 0 to switch to
-     * the timestamped scheme (see WebhookSignature::checkTimestamped()) for
-     * providers that sign "{timestamp}.{payload}" rather than the raw body.
+     * config block — the same 'webhook_header'/'webhook_timestamped'/
+     * 'webhook_tolerance' keys the `webhook` route middleware reads (see
+     * VerifyWebhookSignature), so `$this->verifyWebhook($request)` alone is
+     * enough once those are set in config('services.<key>'); $header/
+     * $toleranceSeconds are only there to override config for a one-off call.
      */
-    protected function verifyWebhook(Request $request, string $header = 'X-Webhook-Signature', int $toleranceSeconds = 0): bool
+    protected function verifyWebhook(Request $request, ?string $header = null, ?int $toleranceSeconds = null): bool
     {
         $secret = $this->setting('webhook_secret');
         if (!is_string($secret) || $secret === '') {
             return false;
         }
 
+        $header ??= (string) $this->setting('webhook_header', 'X-Webhook-Signature');
         $signature = $request->headers->get($header);
         if ($signature === null) {
             return false;
         }
+
+        $toleranceSeconds ??= $this->setting('webhook_timestamped', false)
+            ? (int) $this->setting('webhook_tolerance', 300)
+            : 0;
 
         return $toleranceSeconds > 0
             ? WebhookSignature::checkTimestamped($signature, $request->getContent(), $secret, $toleranceSeconds)

@@ -12,6 +12,8 @@ return [
         'session' => ['driver' => 'session', 'table' => 'users', 'username' => 'email'],
         'jwt' => ['driver' => 'jwt', 'table' => 'users', 'secret' => env('JWT_SECRET'), 'ttl' => 3600],
     ],
+    // Where the `auth` middleware sends an unauthenticated web request (non-JSON only):
+    'redirects' => ['login' => '/login'],
 ];
 ```
 

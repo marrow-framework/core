@@ -48,7 +48,7 @@ class FixtureIntegration extends ServiceIntegration
         return $this->setting($key, $default);
     }
 
-    public function debugVerifyWebhook(Request $request, string $header = 'X-Webhook-Signature', int $tolerance = 0): bool
+    public function debugVerifyWebhook(Request $request, ?string $header = null, ?int $tolerance = null): bool
     {
         return $this->verifyWebhook($request, $header, $tolerance);
     }
@@ -121,6 +121,25 @@ test('verifyWebhook() delegates to WebhookSignature using this integration\'s we
 
     $request = Request::create('/webhooks/fixture', 'POST', content: $payload);
     $request->headers->set('X-Webhook-Signature', WebhookSignature::sign($payload, $secret));
+
+    expect($integration->debugVerifyWebhook($request))->toBeTrue();
+});
+
+test('verifyWebhook() reads webhook_header/webhook_timestamped/webhook_tolerance from config without explicit args', function () {
+    $secret = 'whsec_fixture';
+    $payload = '{"ok":true}';
+    $config = fixtureConfig(['fixture' => [
+        'webhook_secret' => $secret,
+        'webhook_header' => 'Fixture-Signature',
+        'webhook_timestamped' => true,
+        'webhook_tolerance' => 120,
+    ]]);
+    $integration = new FixtureIntegration(HttpClient::create(), $config);
+
+    $timestamp = time();
+    $signature = WebhookSignature::sign("{$timestamp}.{$payload}", $secret);
+    $request = Request::create('/webhooks/fixture', 'POST', content: $payload);
+    $request->headers->set('Fixture-Signature', "t={$timestamp},v1={$signature}");
 
     expect($integration->debugVerifyWebhook($request))->toBeTrue();
 });

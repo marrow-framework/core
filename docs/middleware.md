@@ -100,6 +100,7 @@ $router->get('/admin', Controller::class . '@index')->middleware(['web', 'auth']
 | `RedirectIfAuthenticated` | Inverse — redirects to `/` if already authenticated (guest-only routes) |
 | `HandleCors` | `Access-Control-*` headers from `config/cors.php`; answers `OPTIONS` preflight directly |
 | `VerifyCsrfToken` | 419 on state-changing requests missing/mismatching the CSRF token; exempt via `config/shield.php → csrf_except` |
+| `VerifyWebhookSignature` | `webhook:name` — 400 unless the request's HMAC signature matches `config('services.<name>')`; see [External Service Integrations](integrations.md) |
 | `SecurityHeaders` | `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, COOP/CORP, HSTS (HTTPS only), optional CSP — all from `config/shield.php` |
 | `SanitizeInput` | Strips null bytes, truncates strings over 65,535 chars (skips password/token fields) |
 | `TrimStrings` | Trims whitespace from body input (skips password fields) |
