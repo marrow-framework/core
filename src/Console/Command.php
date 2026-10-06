@@ -292,23 +292,51 @@ abstract class Command extends SymfonyCommand
         return substr($source, 0, $openBracket + 1) . $newInner . substr($source, $closeBracket);
     }
 
+    /**
+     * `$input->isInteractive()` alone isn't reliable in every environment —
+     * it reflects whether `--no-interaction`/`-n` was passed and Symfony's
+     * own best-effort stdin check, which has been observed returning true
+     * (i.e. "safe to prompt") on a stdin that will in fact never produce an
+     * answer, hanging the command indefinitely. Every prompt below also
+     * requires a real `stream_isatty(STDIN)` before attempting to read one,
+     * falling back to its default immediately otherwise — a command that
+     * wants an unattended run should still pass `--no-interaction`/check its
+     * own flags first, this is a last-resort safety net, not a substitute.
+     */
+    protected function canPrompt(): bool
+    {
+        return $this->input->isInteractive() && stream_isatty(STDIN);
+    }
+
     protected function ask(string $question, ?string $default = null): string
     {
+        if (!$this->canPrompt()) {
+            return (string) ($default ?? '');
+        }
         return (string) $this->io->ask($question, $default);
     }
 
     protected function confirm(string $question, bool $default = false): bool
     {
+        if (!$this->canPrompt()) {
+            return $default;
+        }
         return $this->io->confirm($question, $default);
     }
 
     protected function secret(string $question): string
     {
+        if (!$this->canPrompt()) {
+            return '';
+        }
         return (string) $this->io->askHidden($question);
     }
 
     protected function choice(string $question, array $choices, mixed $default = null): string
     {
+        if (!$this->canPrompt()) {
+            return (string) ($default ?? ($choices[array_key_first($choices)] ?? ''));
+        }
         return (string) $this->io->choice($question, $choices, $default);
     }
 
@@ -322,6 +350,9 @@ abstract class Command extends SymfonyCommand
      */
     protected function multiChoice(string $question, array $choices, array $default = []): array
     {
+        if (!$this->canPrompt()) {
+            return $default;
+        }
         $result = $this->io->choice($question, $choices, $default === [] ? null : implode(',', $default), true);
         return array_values((array) $result);
     }
