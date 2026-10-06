@@ -10,6 +10,32 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-10-06
+
+### Added
+
+- **`framework_version()`** (`Support\helpers.php`) — the installed `marrow/framework` version (e.g. `2.4.1`),
+  resolved from Composer's own runtime metadata (`Composer\InstalledVersions`), never hand-maintained. Distinct
+  from `app()->version()` (`config('app.version')`), which is the *application's* own version.
+
+### Fixed
+
+- **The `php forge` CLI banner always printed "Marrow 0.1.0"**, regardless of which `marrow/framework` version
+  was actually installed — `Console\Kernel` was constructed with `config('app.version', '0.1.0')`, the
+  *application's* version config (itself defaulting to `0.1.0` in a fresh skeleton), not the framework's. A
+  fresh `composer create-project marrow/skeleton` followed immediately by `php forge list` looked exactly like
+  a framework frozen since an early prototype. Now built from `framework_version()` instead — `php forge list`
+  on a real install correctly shows e.g. `Marrow 2.4.1`.
+- **`php forge about` mislabeled the application's own version as "Framework"**, and never showed the actual
+  installed `marrow/framework` version anywhere. Now shows both, correctly separated: `Framework` (the real,
+  Composer-resolved version) and `App` (`config('app.name')` + `config('app.version')`, the app's own).
+  Also switched its four other reads from raw `$_ENV` to `config()`, matching the rest of the command.
+- **`FrameworkExtension::getGlobals()`'s Twig `app.*` global read `$_ENV` directly instead of `config('app.*')`**
+  — a value set only in `config/app.php` (not mirrored to an env var) was invisible to `{{ app.name }}`/
+  `{{ app.version }}` in templates even though `config('app.name')` elsewhere in the same app saw it correctly.
+  Now reads through `config()` like everywhere else, and `app.version`'s stale `0.1.0` fallback is gone (empty
+  string when unset, same as `AboutCommand`).
+
 ## [2.4.0] - 2026-10-02
 
 ### Added

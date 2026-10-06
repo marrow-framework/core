@@ -240,13 +240,12 @@ class Application
             );
         });
 
-        // Console Kernel
+        // Console Kernel — "Marrow {framework_version()}", not the app's own
+        // name/version: the banner is identifying the CLI tool itself (the
+        // same reasoning as artisan printing "Laravel Framework 11.x"), and
+        // `forge about` is where the app's own name/version are shown.
         $this->container->singleton(ConsoleKernel::class, function () {
-            return new ConsoleKernel(
-                $this->container,
-                $this->config->get('app.name', 'Marrow'),
-                $this->config->get('app.version', '0.1.0')
-            );
+            return new ConsoleKernel($this->container, 'Marrow', framework_version());
         });
 
         // Session Manager
