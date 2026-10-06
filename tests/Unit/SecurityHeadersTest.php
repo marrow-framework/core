@@ -7,7 +7,7 @@ namespace Marrow\Tests\Unit;
 use Marrow\Http\Request;
 use Marrow\Http\Shield\ShieldConfig;
 use Marrow\Middleware\SecurityHeaders;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 

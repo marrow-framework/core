@@ -6,7 +6,7 @@ namespace Marrow\Tests;
 
 use Marrow\Http\Request as MarrowRequest;
 use PHPUnit\Framework\TestCase as PhpUnitTestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Base TestCase for the Marrow framework test suite.

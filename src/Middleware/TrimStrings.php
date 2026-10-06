@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Marrow\Middleware;
 
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Trims leading/trailing whitespace from every string input field, except

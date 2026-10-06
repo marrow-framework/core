@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Http\Request;
 use Marrow\Session\SessionManager;
 use Marrow\Template\Engine;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Pulls the `_errors`/`_old_input` flashed by a failed validation redirect

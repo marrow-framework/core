@@ -6,7 +6,7 @@ namespace Marrow\Middleware;
 
 use Marrow\Config\Repository as Config;
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * CORS middleware — adds Access-Control-* headers to every response.

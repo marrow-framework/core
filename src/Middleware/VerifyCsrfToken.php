@@ -8,7 +8,7 @@ use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
 use Marrow\Http\Shield\ShieldConfig;
 use Marrow\Session\SessionManager;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Verifies the CSRF token on state-changing requests — part of Marrow's

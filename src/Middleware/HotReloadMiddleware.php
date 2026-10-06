@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Marrow\Middleware;
 
 use Marrow\Application;
+use Marrow\Http\JsonResponse;
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Auto-refreshes the browser during local development, for a project that

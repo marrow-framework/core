@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Closure;
 use Marrow\Container;
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Middleware pipeline — sends a Request through an ordered stack of middlewares

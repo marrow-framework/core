@@ -132,7 +132,7 @@ $router->get('/admin', Controller::class . '@index')->middleware(['web', 'auth']
 namespace App\Middleware;
 
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 class EnsureAdmin
 {

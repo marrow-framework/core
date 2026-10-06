@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Marrow\Session;
 
 use Marrow\Http\Request;
+use Marrow\Http\Response;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 

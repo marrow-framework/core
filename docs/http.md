@@ -38,6 +38,20 @@ contexts without dependency injection (closures, one-off CLI output) — from
 inside a `Controller`, prefer the instance helpers below, which also carry
 the current request/router context.
 
+`JsonResponse` and `RedirectResponse` are genuine subclasses of `Response` —
+a method that can return either a redirect or a rendered view only ever
+needs to declare `: Response`, nothing broader. Internally, `Response`
+*composes* a `Symfony\Component\HttpFoundation\Response` rather than
+extending it (so `RedirectResponse`/`JsonResponse` can extend *this* class
+instead of their own separate Symfony ancestors, which is what made them
+siblings of `Response`, not subtypes, in the past). Every Symfony Response
+method not explicitly redeclared — `setContent()`, `getStatusCode()`,
+`isRedirect()`, cache/cookie/vary helpers, all of it — still works via
+`__call()` forwarding; `$response->headers` is a real property (the same
+`ResponseHeaderBag` the wrapped instance reads when sending), not magic.
+`$response->toSymfonyResponse()` is the escape hatch for anything that
+specifically needs the real Symfony instance.
+
 ## `Controller` helpers
 
 Every controller extending `Http\Controller` gets `TemplateEngine`,

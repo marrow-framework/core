@@ -10,6 +10,36 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-10-06
+
+### Changed (breaking)
+
+- **`Http\Response` now *composes* a `Symfony\Component\HttpFoundation\Response` instead of extending it** —
+  specifically so `Http\RedirectResponse` and `Http\JsonResponse` can be genuine subclasses of `Response`
+  instead of independent siblings of it (each previously extended its own Symfony ancestor directly:
+  `RedirectResponse extends Symfony\...\RedirectResponse`, `Response extends Symfony\...\Response` — two
+  unrelated Symfony leaf classes, so `RedirectResponse` was never an `instanceof Response` even though both are
+  "a Marrow response" in every way that matters to application code). A controller method that can return
+  either a redirect or a rendered view now simply declares `: Response` — no more typing against
+  `Symfony\Component\HttpFoundation\Response` as a workaround (see `marrow/warden`'s controllers, simplified
+  back in the same release this motivated).
+  - Every Symfony Response method not explicitly redeclared (`setContent()`, `getStatusCode()`, `isRedirect()`,
+    cache/cookie/vary helpers, ...) still works, forwarded via `__call()` — `@mixin` on the class gives
+    IDEs/PHPStan full autocomplete/type-checking for those. `$response->headers` is a real public property (the
+    same `ResponseHeaderBag` the wrapped instance reads when sending), not magic. `toSymfonyResponse()` is the
+    escape hatch for anything that specifically needs the real Symfony instance.
+  - **Breaking for any app/package with its own middleware or controller typed against
+    `Symfony\Component\HttpFoundation\Response`** (the previous, now-unnecessary workaround) — a `Marrow\Http\Response`
+    instance is no longer an `instanceof` Symfony's Response, so PHP's own return-type enforcement will throw a
+    `TypeError` the first time such code returns one. Fix: change the type to `Marrow\Http\Response`. Every
+    framework-internal consumer (Router, Pipeline, Kernel, SessionManager, all bundled middleware) already made
+    this exact change — see docs/http.md.
+  - Also fixed one latent instance of the same root cause along the way: `ApiController`'s JSON helpers
+    (`ok()`, `created()`, `notFound()`, ...) constructed `Symfony\Component\HttpFoundation\JsonResponse`
+    directly instead of `Marrow\Http\JsonResponse` — harmless on its own, but would have broken the moment one
+    of those methods' return value reached `Router::toResponse()`'s now-`Marrow\Http\Response`-typed
+    `instanceof` check.
+
 ## [2.5.0] - 2026-10-06
 
 ### Added

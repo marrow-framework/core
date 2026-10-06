@@ -9,7 +9,7 @@ use Marrow\Auth\AuthManager;
 use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
 use Marrow\Http\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Rejects the request unless the given guard (default: `session`) has an

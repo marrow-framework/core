@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Application;
 use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Blocks every request with a 503 while storage/maintenance.flag exists
