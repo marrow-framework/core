@@ -10,6 +10,18 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-10-06
+
+### Fixed
+
+- **An interactive console prompt (`Command::ask()`/`confirm()`/`secret()`/`choice()`/`multiChoice()`) could hang
+  indefinitely instead of either prompting or falling back to its default** — these relied solely on
+  `$input->isInteractive()`, which reflects `--no-interaction`/`-n` and Symfony's own best-effort stdin check,
+  observed returning `true` (i.e. "safe to prompt") in at least one real environment whose stdin would in fact
+  never produce an answer. Every prompt now also requires `stream_isatty(STDIN)` via a new `canPrompt()` guard,
+  falling back to its default immediately when either check fails — found while testing `marrow/anvil`'s and
+  `marrow/ai-context`'s own interactive commands, both updated alongside this.
+
 ## [3.0.0] - 2026-10-06
 
 ### Changed (breaking)
