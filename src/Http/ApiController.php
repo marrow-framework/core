@@ -6,7 +6,6 @@ namespace Marrow\Http;
 
 use Marrow\Http\Resources\JsonResource;
 use Marrow\Http\Resources\ResourceCollection;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Base controller for API endpoints.

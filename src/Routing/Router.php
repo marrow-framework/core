@@ -15,7 +15,7 @@ use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionParameter;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Fluent HTTP router with groups, resource routes, named routes,

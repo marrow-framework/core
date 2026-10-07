@@ -24,19 +24,21 @@ class AboutCommand extends Command
 
     protected function handle(): int
     {
-        $version = $_ENV['APP_VERSION'] ?? '0.2.0';
+        $frameworkVersion = framework_version();
+        $appName = (string) config('app.name', 'Marrow');
+        $appVersion = (string) config('app.version', '');
 
         $this->newLine();
-        $this->output->writeln("   <options=bold;fg=blue>INFO</>  Marrow <options=bold>v{$version}</> — Application Information");
+        $this->output->writeln("   <options=bold;fg=blue>INFO</>  {$appName} — Application Information");
         $this->newLine();
 
         // ── Environment ──────────────────────────────────────────────
         $this->output->writeln('   <options=bold>Environment</>');
         $this->twoColumnDetail('   PHP',       PHP_VERSION);
-        $this->twoColumnDetail('   Framework', $version);
-        $this->twoColumnDetail('   App',       $_ENV['APP_NAME'] ?? 'Marrow');
-        $this->twoColumnDetail('   Env',       $_ENV['APP_ENV'] ?? 'production');
-        $debug = ($_ENV['APP_DEBUG'] ?? 'false') === 'true';
+        $this->twoColumnDetail('   Framework', "marrow/framework {$frameworkVersion}");
+        $this->twoColumnDetail('   App',       $appVersion === '' ? $appName : "{$appName} v{$appVersion}");
+        $this->twoColumnDetail('   Env',       (string) config('app.env', 'production'));
+        $debug = (bool) config('app.debug', false);
         $this->twoColumnDetail('   Debug', $debug ? '<fg=yellow>enabled</>' : '<fg=gray>disabled</>');
         $this->twoColumnDetail('   Path',      base_path());
         $this->newLine();

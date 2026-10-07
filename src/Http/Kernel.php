@@ -11,7 +11,6 @@ use Marrow\Middleware\MiddlewareResolver;
 use Marrow\Middleware\Pipeline;
 use Marrow\Routing\Router;
 use Marrow\Session\SessionManager;
-use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
 /**
@@ -28,7 +27,7 @@ class Kernel
     ) {
     }
 
-    public function handle(Request $request): SymfonyResponse
+    public function handle(Request $request): Response
     {
         try {
             // Bind the active request into the container so request-scoped

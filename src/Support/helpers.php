@@ -24,6 +24,30 @@ if (!function_exists('config')) {
     }
 }
 
+if (!function_exists('framework_version')) {
+    /**
+     * The installed `marrow/framework` version (e.g. "2.4.1"), resolved from
+     * Composer's own runtime metadata — never hand-maintained, so it can't
+     * go stale the way a hardcoded constant would. Distinct from
+     * `app()->version()` (`config('app.version')`), which is the
+     * *application's* own version, not the framework's.
+     *
+     * Falls back to 'dev' outside a Composer-managed install (e.g. this
+     * monorepo's own core/ checkout, where 'marrow/framework' isn't a
+     * dependency of itself).
+     */
+    function framework_version(): string
+    {
+        if (
+            class_exists(\Composer\InstalledVersions::class)
+            && \Composer\InstalledVersions::isInstalled('marrow/framework')
+        ) {
+            return \Composer\InstalledVersions::getPrettyVersion('marrow/framework') ?? 'dev';
+        }
+        return 'dev';
+    }
+}
+
 if (!function_exists('env')) {
     function env(string $key, mixed $default = null): mixed
     {

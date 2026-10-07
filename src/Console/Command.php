@@ -312,6 +312,20 @@ abstract class Command extends SymfonyCommand
         return (string) $this->io->choice($question, $choices, $default);
     }
 
+    /**
+     * Same prompt as choice(), but lets the user pick any number of options
+     * (space to toggle, enter to confirm) instead of exactly one.
+     *
+     * @param string[] $choices
+     * @param string[] $default Pre-selected choices (must match $choices' values).
+     * @return string[] Selected choices, in the order the user picked them.
+     */
+    protected function multiChoice(string $question, array $choices, array $default = []): array
+    {
+        $result = $this->io->choice($question, $choices, $default === [] ? null : implode(',', $default), true);
+        return array_values((array) $result);
+    }
+
     protected function table(array $headers, array $rows): void
     {
         $this->io->table($headers, $rows);

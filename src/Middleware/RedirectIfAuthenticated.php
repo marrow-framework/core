@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Auth\AuthManager;
 use Marrow\Http\Request;
 use Marrow\Http\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Inverse of Authenticate: redirects to `/` if the given guard (default:

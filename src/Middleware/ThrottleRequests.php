@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
 use Marrow\RateLimiting\RateLimiter;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Sliding-window request throttling.

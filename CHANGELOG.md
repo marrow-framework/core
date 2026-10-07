@@ -10,6 +10,62 @@ Les versions `0.1.x`/`0.2.0` (juin 2026) correspondent à la phase de prototypag
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-10-06
+
+### Changed (breaking)
+
+- **`Http\Response` now *composes* a `Symfony\Component\HttpFoundation\Response` instead of extending it** —
+  specifically so `Http\RedirectResponse` and `Http\JsonResponse` can be genuine subclasses of `Response`
+  instead of independent siblings of it (each previously extended its own Symfony ancestor directly:
+  `RedirectResponse extends Symfony\...\RedirectResponse`, `Response extends Symfony\...\Response` — two
+  unrelated Symfony leaf classes, so `RedirectResponse` was never an `instanceof Response` even though both are
+  "a Marrow response" in every way that matters to application code). A controller method that can return
+  either a redirect or a rendered view now simply declares `: Response` — no more typing against
+  `Symfony\Component\HttpFoundation\Response` as a workaround (see `marrow/warden`'s controllers, simplified
+  back in the same release this motivated).
+  - Every Symfony Response method not explicitly redeclared (`setContent()`, `getStatusCode()`, `isRedirect()`,
+    cache/cookie/vary helpers, ...) still works, forwarded via `__call()` — `@mixin` on the class gives
+    IDEs/PHPStan full autocomplete/type-checking for those. `$response->headers` is a real public property (the
+    same `ResponseHeaderBag` the wrapped instance reads when sending), not magic. `toSymfonyResponse()` is the
+    escape hatch for anything that specifically needs the real Symfony instance.
+  - **Breaking for any app/package with its own middleware or controller typed against
+    `Symfony\Component\HttpFoundation\Response`** (the previous, now-unnecessary workaround) — a `Marrow\Http\Response`
+    instance is no longer an `instanceof` Symfony's Response, so PHP's own return-type enforcement will throw a
+    `TypeError` the first time such code returns one. Fix: change the type to `Marrow\Http\Response`. Every
+    framework-internal consumer (Router, Pipeline, Kernel, SessionManager, all bundled middleware) already made
+    this exact change — see docs/http.md.
+  - Also fixed one latent instance of the same root cause along the way: `ApiController`'s JSON helpers
+    (`ok()`, `created()`, `notFound()`, ...) constructed `Symfony\Component\HttpFoundation\JsonResponse`
+    directly instead of `Marrow\Http\JsonResponse` — harmless on its own, but would have broken the moment one
+    of those methods' return value reached `Router::toResponse()`'s now-`Marrow\Http\Response`-typed
+    `instanceof` check.
+
+## [2.5.0] - 2026-10-06
+
+### Added
+
+- **`framework_version()`** (`Support\helpers.php`) — the installed `marrow/framework` version (e.g. `2.4.1`),
+  resolved from Composer's own runtime metadata (`Composer\InstalledVersions`), never hand-maintained. Distinct
+  from `app()->version()` (`config('app.version')`), which is the *application's* own version.
+
+### Fixed
+
+- **The `php forge` CLI banner always printed "Marrow 0.1.0"**, regardless of which `marrow/framework` version
+  was actually installed — `Console\Kernel` was constructed with `config('app.version', '0.1.0')`, the
+  *application's* version config (itself defaulting to `0.1.0` in a fresh skeleton), not the framework's. A
+  fresh `composer create-project marrow/skeleton` followed immediately by `php forge list` looked exactly like
+  a framework frozen since an early prototype. Now built from `framework_version()` instead — `php forge list`
+  on a real install correctly shows e.g. `Marrow 2.4.1`.
+- **`php forge about` mislabeled the application's own version as "Framework"**, and never showed the actual
+  installed `marrow/framework` version anywhere. Now shows both, correctly separated: `Framework` (the real,
+  Composer-resolved version) and `App` (`config('app.name')` + `config('app.version')`, the app's own).
+  Also switched its four other reads from raw `$_ENV` to `config()`, matching the rest of the command.
+- **`FrameworkExtension::getGlobals()`'s Twig `app.*` global read `$_ENV` directly instead of `config('app.*')`**
+  — a value set only in `config/app.php` (not mirrored to an env var) was invisible to `{{ app.name }}`/
+  `{{ app.version }}` in templates even though `config('app.name')` elsewhere in the same app saw it correctly.
+  Now reads through `config()` like everywhere else, and `app.version`'s stale `0.1.0` fallback is gone (empty
+  string when unset, same as `AboutCommand`).
+
 ## [2.4.0] - 2026-10-02
 
 ### Added

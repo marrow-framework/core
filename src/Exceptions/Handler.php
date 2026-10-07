@@ -30,7 +30,7 @@ class Handler
     ) {
     }
 
-    public function render(Request $request, Throwable $e): Response|JsonResponse
+    public function render(Request $request, Throwable $e): Response
     {
         if ($e instanceof ValidationException) {
             return $this->renderValidationError($request, $e);
@@ -63,7 +63,7 @@ class Handler
 
     // ── Validation ───────────────────────────────────────────────────
 
-    private function renderValidationError(Request $request, ValidationException $e): Response|JsonResponse
+    private function renderValidationError(Request $request, ValidationException $e): Response
     {
         if ($request->wantsJson()) {
             return new JsonResponse(

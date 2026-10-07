@@ -7,7 +7,7 @@ namespace Marrow\Tests\Unit;
 use Marrow\Container;
 use Marrow\Http\Request;
 use Marrow\Middleware\Pipeline;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 // ── Tests ─────────────────────────────────────────────────────────────────────
 //

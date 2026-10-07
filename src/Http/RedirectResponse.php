@@ -10,21 +10,45 @@ use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirect;
 /**
  * Redirect response with named-route support and back() helper.
  *
+ * A genuine subclass of `Response` (not a Symfony-RedirectResponse sibling
+ * of it — see Response's own docblock) — composes a
+ * `Symfony\Component\HttpFoundation\RedirectResponse` internally instead of
+ * `Response`'s plain base one, so `getTargetUrl()`/`setTargetUrl()` (and
+ * everything else specific to a redirect) still work via the inherited
+ * `__call()` forwarding, with no need to redeclare them here.
+ *
  * Inside a Controller, prefer `$this->redirectToRoute(...)` — it uses the
  * Controller's own constructor-injected Router. route() below resolves the
  * Router ambiently via Application::getInstance() and exists for contexts
  * with no DI available at all.
+ *
+ * @mixin SymfonyRedirect
  */
-class RedirectResponse extends SymfonyRedirect
+class RedirectResponse extends Response
 {
     private array $flashData = [];
 
     public function __construct(string $url = '', int $status = 302, array $headers = [])
     {
-        parent::__construct($url ?: '/', $status, $headers);
+        // Deliberately not parent::__construct() — that builds a plain
+        // Symfony Response, not a Symfony RedirectResponse.
+        $this->response = new SymfonyRedirect($url ?: '/', $status, $headers);
+        $this->headers = $this->response->headers;
     }
 
-    /** Redirect to a named route. */
+    /**
+     * Redirect to a named route.
+     *
+     * setTargetUrl() goes through $this (not $this->response) deliberately:
+     * the inherited $response property stays typed as the *base* Symfony
+     * Response (PHP property types are invariant — a subclass cannot
+     * re-type an inherited property, even to a covariant one, which a
+     * SymfonyRedirect-typed override here would be), so calling
+     * setTargetUrl() on it directly wouldn't type-check. Routing through
+     * $this uses Response's inherited __call() forwarding instead, which is
+     * exactly what @mixin SymfonyRedirect above documents as the escape
+     * hatch for everything redirect-specific this class doesn't redeclare.
+     */
     public function route(string $name, array $params = []): static
     {
         $url = Application::getInstance()->getContainer()->make(\Marrow\Routing\Router::class)->route($name, $params);

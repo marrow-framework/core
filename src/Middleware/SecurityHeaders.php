@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Http\ContentSecurityPolicy;
 use Marrow\Http\Request;
 use Marrow\Http\Shield\ShieldConfig;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Adds common security headers to every response — part of Marrow's Shield

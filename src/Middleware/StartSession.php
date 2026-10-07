@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Http\Request;
 use Marrow\Http\RedirectResponse;
 use Marrow\Session\SessionManager;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Starts the session before the request is handled, flashes any pending

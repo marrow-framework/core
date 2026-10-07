@@ -429,10 +429,10 @@ class FrameworkExtension extends AbstractExtension implements GlobalsInterface
     {
         return [
             'app' => [
-                'name' => $_ENV['APP_NAME'] ?? 'Marrow',
-                'env' => $_ENV['APP_ENV'] ?? 'production',
-                'debug' => (bool) ($_ENV['APP_DEBUG'] ?? false),
-                'version' => $_ENV['APP_VERSION'] ?? '0.1.0',
+                'name' => config('app.name', 'Marrow'),
+                'env' => config('app.env', 'production'),
+                'debug' => (bool) config('app.debug', false),
+                'version' => config('app.version', ''),
             ],
         ];
     }

@@ -8,7 +8,7 @@ use Marrow\Config\Repository as ConfigRepository;
 use Marrow\Exceptions\HttpException;
 use Marrow\Http\Request;
 use Marrow\Http\Webhook\WebhookSignature;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Rejects an inbound webhook request unless it carries a valid HMAC

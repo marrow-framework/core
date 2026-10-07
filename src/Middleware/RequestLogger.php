@@ -7,7 +7,7 @@ namespace Marrow\Middleware;
 use Marrow\Database\Connection;
 use Marrow\Http\Request;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Marrow\Http\Response;
 
 /**
  * Logs every HTTP request (method, URI, status, duration) via PSR-3.
