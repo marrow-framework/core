@@ -117,11 +117,11 @@ PHP;
     private function viewStub(string $name): string
     {
         return <<<TWIG
-{% extends '@{$name}/layouts/app.html.twig' is defined ? '@{$name}/layouts/app.html.twig' : 'layouts/app.html.twig' %}
+{% extends 'layouts/app.html.twig' %}
 
 {% block title %}{$name}{% endblock %}
 
-{% block content %}
+{% block body %}
 <h1 class="text-2xl font-bold">{$name} Module</h1>
 {% endblock %}
 TWIG;
